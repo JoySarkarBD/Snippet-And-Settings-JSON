@@ -17,7 +17,9 @@
 		"prefix": "log",
 		"body": [
 			"console.${1|log, dir, table, warn|}('$2');",
-			"$3"
+			"$3",
+			"",
+			""
 		],
 		"description": "Log output to console"
 	},
@@ -25,10 +27,10 @@
 		"prefix": "af",
 		"body": [
 			"const ${1:function_name} = (${2:..args}) => {",
-			"$3",
+			"	$3",
 			"};",
 			"",
-			"$4"
+			""
 		],
 		"description": "Arrow Function"
 	},
@@ -36,66 +38,7 @@
 		"prefix": "fun",
 		"body": [
 			"function ${1:function_name}(${2}) {",
-			" ${3}",
-			"}",
-			"",
-			""
-		],
-		"description": "Normal Function"
-	},
-	"Arrow Async Function": {
-		"prefix": "asnc",
-		"body": [
-			"// async ${1:function_name} ",
-			"",
-			"const ${2:function_name} = async (${3:url}) => {",
-			"",
-			"    try {",
-			"",
-			"        const response = await fetch(${4:url});",
-			"        const data = await response.json();",
-			"",
-			"        return data;",
-			"",
-			"    } catch (error) {",
-			"        console.error(error);",
-			"    }",
-			"};",
-			"",
-			""
-		],
-		"description": "Arrow Async Function"
-	},
-	"Custom Comment": {
-		"prefix": "/",
-		"body": [
-			"/*",
-			"* Title: ${1:Title}",
-			"* Description:${2:Description}",
-			"* Author: ${3:Joy Sarkar}",
-			"* Date: $CURRENT_DATE-$CURRENT_MONTH_NAME_SHORT-$CURRENT_YEAR  ",
-			"*/",
-			"",
-			""
-		],
-		"description": "Custom Comment"
-	},
-	"Arrow Function": {
-		"prefix": "af",
-		"body": [
-			"const ${1:function_name} = (${2:..args}) => {",
-			"$3",
-			"};",
-			"",
-			"$4"
-		],
-		"description": "Arrow Function"
-	},
-	"Normal Function": {
-		"prefix": "fun",
-		"body": [
-			"function ${1:function_name}(${2}) {",
-			" ${3}",
+			"	${3}",
 			"}",
 			"",
 			""
@@ -181,96 +124,21 @@
 		"description": "React Class Component"
 	},
 	/* ======================== Redux RTK Query snippet ======================== */
-	"Redux RTK Qurey Example": {
-		"prefix": "rtk-api",
-		"body": [
-			"import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query';",
-			"",
-			"// Define an API slice",
-			"export const userApiSlice = createApi({",
-			"",
-			"    reducerPath: 'userApi',",
-			"    baseQuery: fetchBaseQuery({ baseUrl: 'https://example.com/api' }),",
-			"    tagTypes: [\"Users\", \"User\"],",
-			"",
-			"    endpoints: (builder) => ({",
-			"        // get all users",
-			"        getUsers: builder.query({",
-			"            query: () => '/users',",
-			"            // keepUnusedDataFor: 600,",
-			"            providesTags: [\"Users\"]",
-			"        }),",
-			"        // get single user",
-			"        getUser: builder.query({",
-			"            query: (userId) => `/users/${${userId}}`,",
-			"            providesTags: (result, error, arg) => [{ type: \"User\", id: arg }],",
-			"        }),",
-			"        // add new user",
-			"        addNewUser: builder.mutation({",
-			"            query: (data) => ({",
-			"                url: '/users',",
-			"                method: 'POST',",
-			"                body: data,",
-			"            }),",
-			"            invalidatesTags: [\"Users\"],",
-			"        }),",
-			"        // edit user data ",
-			"        editUserData: builder.mutation({",
-			"            query: ({ id, data }) => ({",
-			"                url: `/users/${${id}}`,",
-			"                method: \"PATCH\",",
-			"                body: data,",
-			"            }),",
-			"            invalidatesTags: [\"Users\"],",
-			"        }),",
-			"        // delete user data",
-			"        deleteBook: builder.mutation({",
-			"            query: (id) => ({",
-			"                url: `/userss/${${id}}`,",
-			"                method: \"DELETE\",",
-			"            }),",
-			"            invalidatesTags: [\"Users\"],",
-			"        }),",
-			"    }),",
-			"});",
-			"",
-			"export const { useGetUsersQuery, useGetUserQuery, useAddNewUserQuery, useEditUserDataQuery, useDeleteBookQuery } = userApiSlice;"
-		],
-		"description": "Redux RTK Qurey Example"
-	},
-	"Redux RTK Store Example": {
-		"prefix": "rtk-store",
-		"body": [
-			"import { configureStore } from '@reduxjs/toolkit'",
-			"import { ${1:userApi} } from './${2:path}'",
-			"",
-			"export const store = configureStore({",
-			"  reducer: {",
-			"    // Add the generated reducer as a specific top-level slice",
-			"    [${1:userApi}.reducerPath]: ${1:userApi}.reducer,",
-			"  },",
-			"  // Adding the api middleware enables caching, invalidation, polling,",
-			"  // and other useful features of `rtk-query`.",
-			"  middleware: (getDefaultMiddleware) =>",
-			"    getDefaultMiddleware().concat(${1:userApi}.middleware),",
-			"})",
-			"",
-			"",
-			""
-		],
-		"description": "Redux RTK Qurey Example"
-	},
 	"Redux RTK Use Qurey Example": {
 		"prefix": "rtk-useQuery",
 		"body": [
-			"const { data, error, isLoading } = use${1:queryName}Query();"
+			"const { data, error, isLoading } = use${1:queryName}Query();",
+			"",
+			""
 		],
 		"description": "Redux RTK Use Qurey Example"
 	},
 	"Redux RTK Use Mutation Example": {
 		"prefix": "rtk-useMutation",
 		"body": [
-			"const [update${1:DataName}, result] = use${2:DataName}Mutation();"
+			"const [update${1:DataName}, result] = use${2:DataName}Mutation();",
+			"",
+			""
 		],
 		"description": "Redux RTK Use Mutation Example"
 	}
