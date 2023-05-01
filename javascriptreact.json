@@ -136,7 +136,7 @@
 	"Redux RTK Use Mutation Example": {
 		"prefix": "rtk-useMutation",
 		"body": [
-			"const [endpoint, /* result*/ { isLoading, isError, isSuccess }] = useDataNameMutation();",
+			"const [endpoint, /* result || */ { isLoading, isError, isSuccess }] = useDataNameMutation();",
 			"",
 			""
 		],
