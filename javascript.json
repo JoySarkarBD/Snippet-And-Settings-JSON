@@ -550,9 +550,9 @@
 		"prefix": "mongo-create",
 		"body": [
 			"let $array = [{",
-			"    field:$item",
+			"    $field:$item",
 			"}, {",
-			"    field:item",
+			"    $field:$item",
 			"}];",
 			"${1:Model}.create(",
 			"    $array",
