@@ -796,58 +796,69 @@
 			"import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query';",
 			"",
 			"// Define an API slice",
-			"export const userApiSlice = createApi({",
+			"export const ${1:userApi}Slice = createApi({",
 			"",
-			"    reducerPath: 'userApi',",
+			"    reducerPath: '${1:userApi}',",
 			"    baseQuery: fetchBaseQuery({ baseUrl: 'https://example.com/api' }),",
-			"    tagTypes: [\"Users\", \"User\"],",
+			"    tagTypes: [\"${2:User}s\", \"${2:User}\"],",
 			"",
 			"    endpoints: (builder) => ({",
 			"        // get all users",
-			"        getUsers: builder.query({",
-			"            query: () => '/users',",
+			"        get${2:User}s: builder.query({",
+			"            query: () => '/${3:path}',",
 			"            // keepUnusedDataFor: 600,",
-			"            providesTags: [\"Users\"]",
+			"            providesTags: [\"${2:User}s\"]",
 			"        }),",
 			"        // get single user",
-			"        getUser: builder.query({",
-			"            query: (userId) => `/users/${${userId}}`,",
-			"            providesTags: (result, error, arg) => [{ type: \"User\", id: arg }],",
+			"        get${2:User}: builder.query({",
+			"            query: (id) => `/${3:path}/${${id}}`,",
+			"            providesTags: (result, error, arg) => [{ type: \"${2:User}\", id: arg }],",
 			"        }),",
 			"        // add new user",
-			"        addNewUser: builder.mutation({",
+			"        addNew${2:User}: builder.mutation({",
 			"            query: (data) => ({",
-			"                url: '/users',",
+			"                url: '/${3:path}',",
 			"                method: 'POST',",
 			"                body: data,",
 			"            }),",
-			"            invalidatesTags: [\"Users\"],",
+			"            invalidatesTags: [\"${2:User}s\"],",
 			"        }),",
 			"        // edit user data ",
-			"        editUserData: builder.mutation({",
+			"        edit${2:User}Data: builder.mutation({",
 			"            query: ({ id, data }) => ({",
-			"                url: `/users/${${id}}`,",
+			"                url: `/${3:path}/${${id}}`,",
 			"                method: \"PATCH\",",
 			"                body: data,",
 			"            }),",
-			"            invalidatesTags: [\"Users\"],",
+			"            invalidatesTags: [\"${2:User}s\"],",
 			"        }),",
 			"        // delete user data",
-			"        deleteBook: builder.mutation({",
+			"        delete${2:User}: builder.mutation({",
 			"            query: (id) => ({",
-			"                url: `/userss/${${id}}`,",
+			"                url: `/${3:path}/${${id}}`,",
 			"                method: \"DELETE\",",
 			"            }),",
-			"            invalidatesTags: [\"Users\"],",
+			"            invalidatesTags: [\"${2:User}s\"],",
 			"        }),",
 			"    }),",
 			"});",
 			"",
-			"export const { useGetUsersQuery, useGetUserQuery, useAddNewUserQuery, useEditUserDataQuery, useDeleteBookQuery } = userApiSlice;",
+			"export const { use${4:GetUser}sQuery, use${4:GetUser}Query, useAddNew${5:User}Query, useEdit${5:User}DataQuery, useDelete${5:User}Query } = ${1:userApi}Slice;",
 			"",
 			""
 		],
 		"description": "Redux RTK Qurey Example"
+	},
+	"Redux RTK Qurey Reducer Example": {
+		"prefix": "rtk-reducer",
+		"body": [
+			"reducers: {",
+			"        ${1:reducerName}: (state, action) => {",
+			"            state.${2:filedName} = action.payload;",
+			"        }",
+			"    },"
+		],
+		"description": "Redux RTK Qurey Reducer Example"
 	},
 	"Redux RTK Store Example": {
 		"prefix": "rtk-store",
@@ -882,10 +893,24 @@
 	"Redux RTK Use Mutation Example": {
 		"prefix": "rtk-useMutation",
 		"body": [
-			"const [endpoint, /* result || */ { isLoading, isError, isSuccess }] = useDataNameMutation();",
+			"const [${1:endpoint}, /* result || */ { isLoading, isError, isSuccess }] = use${2:DataName}Mutation();",
 			"",
 			""
 		],
 		"description": "Redux RTK Use Mutation Example"
+	},
+	"Redux Use Selector Example": {
+		"prefix": "rtk-selector",
+		"body": [
+			"const { ${2:childObjName} } = useSelector(state => state.${1:mainObjName});"
+		],
+		"description": "Redux Use Selector Example"
+	},
+	"Redux Use Dispatch Example": {
+		"prefix": "rtk-dispatch",
+		"body": [
+			"const dispatch = useDispatch();"
+		],
+		"description": "Redux Use Selector Example"
 	}
 }

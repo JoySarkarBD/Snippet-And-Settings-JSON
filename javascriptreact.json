@@ -136,10 +136,24 @@
 	"Redux RTK Use Mutation Example": {
 		"prefix": "rtk-useMutation",
 		"body": [
-			"const [endpoint, /* result || */ { isLoading, isError, isSuccess }] = useDataNameMutation();",
+			"const [${1:endpoint}, /* result || */ { isLoading, isError, isSuccess }] = use${2:DataName}Mutation();",
 			"",
 			""
 		],
 		"description": "Redux RTK Use Mutation Example"
+	},
+	"Redux Use Selector Example": {
+		"prefix": "rtk-selector",
+		"body": [
+			"const { ${2:childObjName} } = useSelector(state => state.${1:mainObjName});"
+		],
+		"description": "Redux Use Selector Example"
+	},
+	"Redux Use Dispatch Example": {
+		"prefix": "rtk-dispatch",
+		"body": [
+			"const dispatch = useDispatch();"
+		],
+		"description": "Redux Use Selector Example"
 	}
 }
