@@ -790,66 +790,64 @@
 		"description": "Mongo statics Example"
 	},
 	/* ======================== Redux RTK Query snippet ======================== */
-	"Redux RTK Qurey Example": {
+	"Redux RTK API Example": {
 		"prefix": "rtk-api",
 		"body": [
-			"import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query';",
+			"import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react' /* IMPORT FRAME_WORK_NAME LIKE /react||*/ ;",
 			"",
 			"// Define an API slice",
-			"export const ${1:userApi}Slice = createApi({",
+			"export const /*ROOT_API_SLICE_NAME ||*/ apiSlice = createApi({",
 			"",
-			"    reducerPath: '${1:userApi}',",
+			"    reducerPath: 'api',",
 			"    baseQuery: fetchBaseQuery({ baseUrl: 'https://example.com/api' }),",
-			"    tagTypes: [\"${2:User}s\", \"${2:User}\"],",
+			"    tagTypes: [\"Users\", \"User\"],",
 			"",
 			"    endpoints: (builder) => ({",
 			"        // get all users",
-			"        get${2:User}s: builder.query({",
-			"            query: () => '/${3:path}',",
+			"        getUsers: builder.query({",
+			"            query: () => '/path',",
 			"            // keepUnusedDataFor: 600,",
-			"            providesTags: [\"${2:User}s\"]",
+			"            providesTags: [\"Users\"]",
 			"        }),",
 			"        // get single user",
-			"        get${2:User}: builder.query({",
-			"            query: (id) => `/${3:path}/${${id}}`,",
-			"            providesTags: (result, error, arg) => [{ type: \"${2:User}\", id: arg }],",
+			"        getUser: builder.query({",
+			"            query: (id) => `/path/${${id}}`,",
+			"            providesTags: (result, error, arg) => [{ type: \"User\", id: arg }],",
 			"        }),",
 			"        // add new user",
-			"        addNew${2:User}: builder.mutation({",
+			"        addNewUser: builder.mutation({",
 			"            query: (data) => ({",
-			"                url: '/${3:path}',",
+			"                url: '/path',",
 			"                method: 'POST',",
 			"                body: data,",
 			"            }),",
-			"            invalidatesTags: [\"${2:User}s\"],",
+			"            invalidatesTags: [\"Users\"],",
 			"        }),",
 			"        // edit user data ",
-			"        edit${2:User}Data: builder.mutation({",
+			"        editUserData: builder.mutation({",
 			"            query: ({ id, data }) => ({",
-			"                url: `/${3:path}/${${id}}`,",
+			"                url: `/path/${${id}}`,",
 			"                method: \"PATCH\",",
 			"                body: data,",
 			"            }),",
-			"            invalidatesTags: [\"${2:User}s\"],",
+			"            invalidatesTags: [\"Users\"],",
 			"        }),",
 			"        // delete user data",
-			"        delete${2:User}: builder.mutation({",
+			"        deleteUser: builder.mutation({",
 			"            query: (id) => ({",
-			"                url: `/${3:path}/${${id}}`,",
+			"                url: `/path/${${id}}`,",
 			"                method: \"DELETE\",",
 			"            }),",
-			"            invalidatesTags: [\"${2:User}s\"],",
+			"            invalidatesTags: [\"Users\"],",
 			"        }),",
 			"    }),",
 			"});",
 			"",
-			"export const { use${4:GetUser}sQuery, use${4:GetUser}Query, useAddNew${5:User}Query, useEdit${5:User}DataQuery, useDelete${5:User}Query } = ${1:userApi}Slice;",
-			"",
-			""
+			"export const { useGetUsersQuery, useGetUserQuery, useAddNewUserQuery, useEditUserDataQuery, useDeleteUserQuery } = /*ROOT_API_SLICE_NAME ||*/ apiSlice;"
 		],
-		"description": "Redux RTK Qurey Example"
+		"description": "Redux RTK API Example"
 	},
-	"Redux RTK Qurey Reducer Example": {
+	"Redux RTK Reducer Example": {
 		"prefix": "rtk-reducer",
 		"body": [
 			"reducers: {",
@@ -860,31 +858,53 @@
 		],
 		"description": "Redux RTK Qurey Reducer Example"
 	},
+	"Redux RTK Slice Example": {
+		"prefix": "rtk-slice",
+		"body": [
+			"import { createSlice } from \"@reduxjs/toolkit\";",
+			"",
+			"const initialState = {",
+			"    ${1:ObjKey}: ${2:value},",
+			"};",
+			"",
+			"const ${3:name}Slice = createSlice({",
+			"    name: \"${3:name}\",",
+			"    initialState,",
+			"    reducers: {",
+			"        ${4:reducerName}: (state, action) => {",
+			"            state.${5:ObjKey} = action.payload.${5:ObjKey};",
+			"        },",
+			"    },",
+			"});",
+			"",
+			"export const { ${4:reducerName}, } = ${3:name}Slice.actions;",
+			"export default ${3:name}Slice.reducer;"
+		],
+		"description": "Redux RTK Slice Example"
+	},
 	"Redux RTK Store Example": {
 		"prefix": "rtk-store",
 		"body": [
 			"import { configureStore } from '@reduxjs/toolkit'",
-			"import { ${1:userApi} } from './${2:path}'",
+			"import { /* ROOT_API_SLICE_NAME */ ${1:apiSlice} } from './${2:path}'",
 			"",
 			"export const store = configureStore({",
 			"  reducer: {",
-			"    // Add the generated reducer as a specific top-level slice",
-			"    [${1:userApi}.reducerPath]: ${1:userApi}.reducer,",
+			"    [/* ROOT_API_SLICE_NAME */ ${1:apiSlice}.reducerPath]: ${1:apiSlice}.reducer,",
 			"  },",
-			"  // Adding the api middleware enables caching, invalidation, polling,",
-			"  // and other useful features of `rtk-query`.",
+			"  devTools: !process.env.NODE_ENV === \"production\"",
 			"  middleware: (getDefaultMiddleware) =>",
-			"    getDefaultMiddleware().concat(${1:userApi}.middleware),",
-			"})",
+			"    getDefaultMiddleware().concat(/* ROOT_API_SLICE_NAME */ ${1:apiSlice}.middleware),",
+			"});",
 			"",
 			""
 		],
-		"description": "Redux RTK Qurey Example"
+		"description": "Redux RTK STORE Example"
 	},
-	"Redux RTK Use Qurey Example": {
+	"Redux RTK Use Query Example": {
 		"prefix": "rtk-useQuery",
 		"body": [
-			"const { data, error, isLoading } = use${1:queryName}Query();",
+			"const { data, error, isLoading } = use${1:END_POINTS_NAME}Query();",
 			"",
 			""
 		],
@@ -893,7 +913,7 @@
 	"Redux RTK Use Mutation Example": {
 		"prefix": "rtk-useMutation",
 		"body": [
-			"const [${1:endpoint}, /* result || */ { isLoading, isError, isSuccess }] = use${2:DataName}Mutation();",
+			"const [${1:END_POINTS_NAME}, /* result || */ { isLoading, isError, isSuccess }] = use${2:DataName}Mutation();",
 			"",
 			""
 		],
@@ -902,7 +922,7 @@
 	"Redux Use Selector Example": {
 		"prefix": "rtk-selector",
 		"body": [
-			"const { ${2:childObjName} } = useSelector(state => state.${1:mainObjName});"
+			"const { ${2:ChildObjName} } = useSelector(state => state.${1:MainObjName});"
 		],
 		"description": "Redux Use Selector Example"
 	},
@@ -912,5 +932,57 @@
 			"const dispatch = useDispatch();"
 		],
 		"description": "Redux Use Selector Example"
+	},
+	"Redux RTK Inject End Points Example": {
+		"prefix": "rtk-inject-points",
+		"body": [
+			"import { apiSlice } from \"./path\";",
+			"/* import { userLoggedIn } from \"./authSlice\"; // reducer form custom made slice */",
+			"",
+			"export const ${1:END_POINT_API} = apiSlice.injectEndpoints({",
+			"    endpoints: (builder) => ({",
+			"        ${2:END_POINTS_NAME}: builder.mutation({",
+			"            query: (data) => ({",
+			"                url: \"/path\", /* you can use endpoint as your url path */",
+			"                method: \"POST\", /* PUT || POST || PATCH || GET || DELETE */",
+			"                body: data,",
+			"            }),",
+			"            async onQueryStarted(arg, { queryFulfilled, dispatch }) {",
+			"                try {",
+			"                    const result = await queryFulfilled;",
+			"                    dispatch(",
+			"                        /*",
+			"                        * As example",
+			"                        *",
+			"                        * Pass your data as parameter(if it is single just pass as it is and for for multiple pass it as an obj)",
+			"                        *   like bellow",
+			"                        *",
+			"                        * Single data:",
+			"                        *       userLoggedIn(objkey: result.data.objkey)",
+			"                        *",
+			"                        * Multiple data:",
+			"                        *       userLoggedIn({",
+			"                        *            objkey: result.data.objkey,",
+			"                        *            objkey: result.data.objkey,",
+			"                        *       })",
+			"                        */",
+			"                    );",
+			"                } catch (err) {",
+			"                    // do nothing",
+			"                }",
+			"            },",
+			"        }),",
+			"        ${3:END_POINTS_NAME}: builder.query({",
+			"            query: (param) => `/path/${param}`,",
+			"            providesTags: (result, error, arg) => [{ type: \"User\", id: arg }],",
+			"        })",
+			"    }),",
+			"});",
+			"",
+			"",
+			"export const { use${4:END_POINTS_NAME}Mutation, use${5:END_POINTS_NAME}Query } = ${1:END_POINT_API};",
+			""
+		],
+		"description": "Redux RTK Inject End Points Example"
 	}
 }

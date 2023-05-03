@@ -124,10 +124,10 @@
 		"description": "React Class Component"
 	},
 	/* ======================== Redux RTK Query snippet ======================== */
-	"Redux RTK Use Qurey Example": {
+	"Redux RTK Use Query Example": {
 		"prefix": "rtk-useQuery",
 		"body": [
-			"const { data, error, isLoading } = use${1:queryName}Query();",
+			"const { data, error, isLoading } = use${1:END_POINTS_NAME}Query();",
 			"",
 			""
 		],
@@ -136,7 +136,7 @@
 	"Redux RTK Use Mutation Example": {
 		"prefix": "rtk-useMutation",
 		"body": [
-			"const [${1:endpoint}, /* result || */ { isLoading, isError, isSuccess }] = use${2:DataName}Mutation();",
+			"const [${1:END_POINTS_NAME}, /* result || */ { isLoading, isError, isSuccess }] = use${2:DataName}Mutation();",
 			"",
 			""
 		],
@@ -145,7 +145,7 @@
 	"Redux Use Selector Example": {
 		"prefix": "rtk-selector",
 		"body": [
-			"const { ${2:childObjName} } = useSelector(state => state.${1:mainObjName});"
+			"const { ${2:ChildObjName} } = useSelector(state => state.${1:MainObjName});"
 		],
 		"description": "Redux Use Selector Example"
 	},
