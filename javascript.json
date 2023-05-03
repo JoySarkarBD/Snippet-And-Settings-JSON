@@ -892,7 +892,7 @@
 			"  reducer: {",
 			"    [/* ROOT_API_SLICE_NAME */ ${1:apiSlice}.reducerPath]: ${1:apiSlice}.reducer,",
 			"  },",
-			"  devTools: !process.env.NODE_ENV === \"production\"",
+			"  devTools: process.env.NODE_ENV !== \"production\"",
 			"  middleware: (getDefaultMiddleware) =>",
 			"    getDefaultMiddleware().concat(/* ROOT_API_SLICE_NAME */ ${1:apiSlice}.middleware),",
 			"});",
