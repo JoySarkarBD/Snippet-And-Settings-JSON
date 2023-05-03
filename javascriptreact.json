@@ -127,16 +127,16 @@
 	"Redux RTK Use Query Example": {
 		"prefix": "rtk-useQuery",
 		"body": [
-			"const { data, error, isLoading } = use${1:END_POINTS_NAME}Query();",
+			"const { data, error, isLoading } = use${1:END_POINT_NAME}Query();",
 			"",
 			""
 		],
-		"description": "Redux RTK Use Qurey Example"
+		"description": "Redux RTK Use Query Example"
 	},
 	"Redux RTK Use Mutation Example": {
 		"prefix": "rtk-useMutation",
 		"body": [
-			"const [${1:END_POINTS_NAME}, /* result || */ { isLoading, isError, isSuccess }] = use${2:DataName}Mutation();",
+			"const [${1:END_POINT_NAME}, /* result || */ { isLoading, isError, isSuccess }] = use${2:END_POINT_NAME}Mutation();",
 			"",
 			""
 		],
