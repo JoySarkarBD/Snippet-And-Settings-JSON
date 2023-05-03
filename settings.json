@@ -23,19 +23,19 @@
   "editor.formatOnSave": true,
   "javascript.validate.enable": false, //disable all built-in syntax checking
   "[html]": {
-    "editor.defaultFormatter": "vscode.html-language-features",
+    "editor.defaultFormatter": "vscode.html-language-features"
   },
   "[scss]": {
-    "editor.defaultFormatter": "vscode.css-language-features",
+    "editor.defaultFormatter": "vscode.css-language-features"
   },
   "[javascript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features",
   },
   "[css]": {
-    "editor.defaultFormatter": "vscode.css-language-features",
+    "editor.defaultFormatter": "vscode.css-language-features"
   },
   "[javascriptreact]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features",
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
@@ -84,7 +84,16 @@
     "terminal.ansiMagenta": "#8F4673",
     "terminal.ansiRed": "#FB543F",
     "terminal.ansiWhite": "#A89984",
-    "terminal.ansiYellow": "#FAC03B"
+    "terminal.ansiYellow": "#FAC03B",
+    // Overrides Theme Default Colors for InlayHints feature 
+    "editorInlayHint.background": "#00001CCC",
+    "editorInlayHint.foreground": "#99FFBBCC",
+    // Overrides Theme Parameter hints fg for InlayHints feature
+    "editorInlayHint.parameterBackground": "#00001CCC",
+    "editorInlayHint.parameterForeground": "#99FFBBCC",
+    // Overrides Theme Type hints fg for InlayHints feature
+    "editorInlayHint.typeBackground": "#08000088",
+    "editorInlayHint.typeForeground": "#DDEEFF88"
   },
   "workbench.startupEditor": "none",
   "javascript.updateImportsOnFileMove.enabled": "always",
@@ -109,17 +118,30 @@
   "terminal.integrated.cursorWidth": 2,
   "terminal.integrated.defaultProfile.windows": "PowerShell",
   "git.suggestSmartCommit": false,
-  "workbench.colorTheme": "Default Dark+ Experimental",
   "git.openRepositoryInParentFolders": "never",
   "prettier.jsxSingleQuote": true,
   "prettier.requireConfig": true,
   "window.commandCenter": true,
-  "workbench.iconTheme": "material-icon-theme",
   "files.associations": {
     "*.jsx": "javascriptreact"
   },
   "liveServer.settings.donotVerifyTags": true,
   "liveServer.settings.donotShowInfoMsg": true,
+  // "javascript.inlayHints.parameterNames.enabled": "all",
+  // "javascript.inlayHints.parameterTypes.enabled": true,
+  // "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
+  // "typescript.inlayHints.enumMemberValues.enabled": true,
+  // "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+  // "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+  // "javascript.inlayHints.variableTypes.enabled": true,
+  // "javascript.inlayHints.enumMemberValues.enabled": true,
+  // "typescript.inlayHints.parameterNames.enabled": "all",
+  // "typescript.inlayHints.parameterTypes.enabled": true,
+  // "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+  // "typescript.inlayHints.variableTypes.enabled": true,
+  // "editor.inlayHints.fontFamily": "\"Cascadia Code\", Fira Code, Operator Mono",
+  // "editor.inlayHints.padding": true,
+  "workbench.iconTheme": "material-icon-theme"
 }
 /* 
 
