@@ -1,1013 +1,965 @@
 {
-	// Place your snippets for javascript here. Each snippet is defined under a snippet name and has a prefix, body and 
-	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
-	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
-	// same ids are connected.
-	// Example:
-	"Print to console": {
-		"prefix": "log",
-		"body": [
-			"console.${1|log, dir, table, warn|}('$2');",
-			"",
-			""
-		],
-		"description": "Log output to console"
-	},
-	"Arrow Function": {
-		"prefix": "af",
-		"body": [
-			"const ${1:function_name} = (${2:..args}) => {",
-			"	$3",
-			"};",
-			"",
-			""
-		],
-		"description": "Arrow Function"
-	},
-	"Normal Function": {
-		"prefix": "fun",
-		"body": [
-			"function ${1:function_name}(${2}) {",
-			"	${3}",
-			"}",
-			"",
-			""
-		],
-		"description": "Normal Function"
-	},
-	"Arrow Async Function": {
-		"prefix": "asnc",
-		"body": [
-			"// async ${1:function_name} ",
-			"",
-			"const ${2:function_name} = async (${3:url}) => {",
-			"",
-			"    try {",
-			"",
-			"        const response = await fetch(${4:url});",
-			"        const data = await response.json();",
-			"",
-			"        return data;",
-			"",
-			"    } catch (error) {",
-			"        console.error(error);",
-			"    }",
-			"};",
-			"",
-			""
-		],
-		"description": "Arrow Async Function"
-	},
-	"Custom Comment": {
-		"prefix": "/",
-		"body": [
-			"/*",
-			"* Title: ${1:Title}",
-			"* Description:${2:Description}",
-			"* Author: ${3:Joy Sarkar}",
-			"* Date: $CURRENT_DATE-$CURRENT_MONTH_NAME_SHORT-$CURRENT_YEAR  ",
-			"*/",
-			"",
-			""
-		],
-		"description": "Custom Comment"
-	},
-	"Param Comment": {
-		"prefix": "param",
-		"body": [
-			"/**",
-			" * @param { string || number || boolean || undefined || null || object || array$1} ${2:parameterName}",
-			" */"
-		],
-		"description": "Param Comment"
-	},
-	"Todo Comment": {
-		"prefix": "todo",
-		"body": [
-			"// TODO: ${1:Task_Name}"
-		],
-		"description": "Todo Comment"
-	},
-	/* ======================== React js snippet ======================== */
-	"React Functional Component": {
-		"prefix": "rsc",
-		"body": [
-			"export default function app() {",
-			"    return (",
-			"        <div>",
-			"           $1",
-			"        </div>",
-			"    )",
-			"}"
-		],
-		"description": "React Functional Component"
-	},
-	"React Class Component": {
-		"prefix": "rcc",
-		"body": [
-			"import React, { Component } from 'react';",
-			"",
-			"class $TM_FILENAME_BASE extends Component {",
-			"    constructor(props) {",
-			"        super(props);",
-			"        this.state = {",
-			"            ${1:stateValue}: ${2:value}",
-			"        };",
-			"    }",
-			"",
-			"",
-			"    render() {",
-			"        return (",
-			"            <div>",
-			"                $3",
-			"            </div>",
-			"        );",
-			"    }",
-			"}",
-			"",
-			"export default $TM_FILENAME_BASE;",
-		],
-		"description": "React Class Component"
-	},
-	/* ======================== Express js snippet ======================== */
-	// Application Snippets
-	"Express Server Example": {
-		"prefix": "ex-server",
-		"body": [
-			"const express = require('express');",
-			"const app = express();",
-			"const bodyParser = require('body-parser');",
-			"const port = 3000;",
-			"",
-			"// middlewares ",
-			"app.use(bodyParser.json());",
-			"app.use(bodyParser.urlencoded({ extended: false }))",
-			"app.use(bodyParser.urlencoded({ extended: true }));",
-			"app.use(express.static(__dirname + '/public'));",
-			"",
-			"app.get('/', (req, res) => {",
-			"    res.send('Hello World!');",
-			"});",
-			"",
-			"// Start the server",
-			"app.listen(port, () => {",
-			"    console.log(`Server listening at http://localhost:${${port}}`);",
-			"});",
-			"",
-			""
-		],
-		"description": "Express Server Example"
-	},
-	"Express Server With Mongoose Example": {
-		"prefix": "ex-mongo-server",
-		"body": [
-			"const express = require('express');",
-			"const mongoose = require('mongoose');",
-			"const bodyParser = require('body-parser')",
-			"const app = express();",
-			"const port = 3000;",
-			"",
-			"",
-			"// middlewares",
-			"app.use(bodyParser.urlencoded({ extended: false }));",
-			"app.use(bodyParser.urlencoded({ extended: true }));;",
-			"app.use(bodyParser.json());",
-			"app.use(express.static(__dirname + '/public'));",
-			"",
-			"app.get('/', async (req, res) => {",
-			"    res.send(\"Hello World\");",
-			"});",
-			"",
-			"",
-			"// Start the server",
-			"app.listen(port, () => {",
-			"",
-			"    console.log(`Server listening at http://localhost:${${port}}`);",
-			"",
-			"",
-			"	// mongoose server connection",
-			"    mongoose.connect('mongodb://localhost/27017/${1:db-name}', {",
-			"        useNewUrlParser: true,",
-			"        useUnifiedTopology: true",
-			"    }).then(() => {",
-			"        console.log('MongoDB connected');",
-			"    }).catch((err) => {",
-			"        console.error('MongoDB connection error', err);",
-			"    });",
-			"});",
-			"",
-			""
-		],
-		"description": "Express Server With Mongoose Example"
-	},
-	"Express App.all Example": {
-		"prefix": "ex-app-all",
-		"body": [
-			"app.all('${1:path}', (req, res, next) => {",
-			"	 $2",
-			"    next();",
-			"});",
-			"",
-			""
-		],
-		"description": "Express App.all Example"
-	},
-	"Express App.get Example": {
-		"prefix": "ex-app-get",
-		"body": [
-			"app.get('${1:path}', (req, res) => {",
-		  	"	 $2",
-			"});",
-			"",
-			""
-		],
-		"description": "Express App.get Example"
-	},
-	"Express App.post Example": {
-		"prefix": "ex-app-post",
-		"body": [
-			"app.post('${1:path}', (req, res) => {",
-		  	"	 $2",
-			"});",
-			"",
-			""
-		],
-		"description": "Express App.post Example"
-	},
-	"Express App.put Example": {
-		"prefix": "ex-app-put",
-		"body": [
-			"app.put('${1:path}', (req, res) => {",
-		  	"	 $2",
-			"});",
-			"",
-			""
-		],
-		"description": "Express App.put Example"
-	},
-	"Express App.delete Example": {
-		"prefix": "ex-app-delete",
-		"body": [
-			"app.delete('${1:path}', (req, res) => {",
-		  	"	 $2",
-			"});",
-			"",
-			""
-		],
-		"description": "Express App.delete Example"
-	},
-	"Express App.patch Example": {
-		"prefix": "ex-app-patch",
-		"body": [
-			"app.patch('${1:path}', (req, res) => {",
-		  	"	 $2",
-			"});",
-			"",
-			""
-		],
-		"description": "Express App.patch Example"
-	},
-	"Express App.route Example": {
-		"prefix": "ex-app-route",
-		"body": [
-			"app.route('path')",
-			"    .get((req, res) => {",
-			"        res.send('Get user list');",
-			"    })",
-			"    .post((req, res) => {",
-			"        res.send('Add new user');",
-			"    })",
-			"    .put((req, res) => {",
-			"        res.send('Update user');",
-			"    })",
-			"    .delete((req, res) => {",
-			"        res.send('Delete user');",
-			"    });",
-			"",
-			""
-		],
-		"description": "Express App.route Example"
-	},
-	// Handlers Snippets
-	"Express 404 Example": {
-		"prefix": "ex-404",
-		"body": [
-			"app.use(function (req, res, next) {",
-			"    res.status(404).send('404 - Not Found!');",
-			"});",
-			""
-		],
-		"description": "Express 404 Example"
-	},
-	"Express 500 Example": {
-		"prefix": "ex-500",
-		"body": [
-			"app.use(function (err, req, res, next) {",
-			"    res.status(500).send('500 - Something was error!');",
-			"});",
-			""
-		],
-		"description": "Express 500 Example"
-	},
-	// Request Snippets
-	"Express Req.accepts Example": {
-		"prefix": "ex-req-accepts",
-		"body": [
-			"req.accepts(${1:types});",
-			"",
-			""
-		],
-		"description": "Express Req.accepts Example"
-	},
-	"Express Req.field Example": {
-		"prefix": "ex-req-field",
-		"body": [
-			"req.get('${1:field}');",
-			"",
-			""
-		],
-		"description": "Express Req.field Example"
-	},
-	"Express Req.cookie Example": {
-		"prefix": "ex-req-cookie",
-		"body": [
-			"res.cookie('${1:name}', ${2:value});",
-			"",
-			""
-		],
-		"description": "Express Req.cookie Example"
-	},
-	"Express Req.redirect Example": {
-		"prefix": "ex-req-redirect",
-		"body": [
-			"res.redirect('${1:path}');",
-			"",
-			""
-		],
-		"description": "Express Req.redirect Example"
-	},
-	// Router Snippets
-	"Express Router Example": {
-		"prefix": "ex-router",
-		"body": [
-			"const ${1:router} = express.Router();",
-			"",
-			"${1:router}.all('path', (req, res, next) => {",
-			"	$3",
-			"    next();",
-			"});",
-			"",
-			""
-		],
-		"description": "Express Router Example"
-	},
-	"Express Router.get Example": {
-		"prefix": "ex-router-get",
-		"body": [
-			"${1:router}.get('${2:path}', (req, res) => {",
-			"	$3",
-			"});",
-			"",
-			""
-		],
-		"description": "Express Router.get Example"
-	},
-	"Express Router.post Example": {
-		"prefix": "ex-router-post",
-		"body": [
-			"${1:router}.post('${2:path}', (req, res) => {",
-			" 	$3",
-			"});",
-			"",
-			""
-		],
-		"description": "Express Router.post Example"
-	},
-	"Express Router.put Example": {
-		"prefix": "ex-router-put",
-		"body": [
-			"${1:router}.put('${2:path}', (req, res) => {",
-			" 	$3",
-			"});",
-			"",
-			""
-		],
-		"description": "Express Router.put Example"
-	},
-	"Express Router.delete Example": {
-		"prefix": "ex-router-delete",
-		"body": [
-			"${1:router}.delete('${2:path}', (req, res) => {",
-			" 	$3",
-			"});",
-			"",
-			""
-		],
-		"description": "Express Router.delete Example"
-	},
-	/* ======================== Mongo Snippets ======================== */
-	// Generic
-	"Mongo Connection Example": {
-		"prefix": "mongo-connect",
-		"body": [
-			"const mongoose = require('mongoose');",
-			"",
-			"mongoose.Promise = global.Promise;",
-			"",
-			"// Connect MongoDB at default port 27017.",
-			"mongoose.connect('mongodb://localhost:27017/${1:DB Name}', {",
-			"    useNewUrlParser: true,",
-			"    useCreateIndex: true,",
-			"}, (err) => {",
-			"    if (!err) {",
-			"        console.log('MongoDB Connection Succeeded.')",
-			"    } else {",
-			"        console.log('Error in DB connection: ' + err)",
-			"    }",
-			"});",
-			"",
-			""
-		],
-		"description": "Mongo Connection Example"
-	},
-	"Mongo Schema Model Example": {
-		"prefix": "mongo-model-schema",
-		"body": [
-			"const mongoose = require('mongoose'); // Erase if already required",
-			"",
-			"// Declare the Schema of the Mongo model",
-			"var $userSchema = new mongoose.Schema({",
-			"    name: {",
-			"        type: String,",
-			"        required: true,",
-			"        unique: true,",
-			"        index: true,",
-			"    },",
-			"    email: {",
-			"        type: String,",
-			"        required: true,",
-			"        unique: true,",
-			"    },",
-			"    mobile: {",
-			"        type: String,",
-			"        required: true,",
-			"        unique: true,",
-			"    },",
-			"    password: {",
-			"        type: String,",
-			"        required: true,",
-			"    },",
-			"});",
-			"",
-			"//Export the model",
-			"module.exports = mongoose.model('$User', $userSchema);",
-			"",
-			""
-		],
-		"description": "Mongo Schema Model Example"
-	},
-	"Mongo Aggregate Example": {
-		"prefix": "mongo-model-aggregate",
-		"body": [
-			"$Model.aggregate([",
-			"    { group: { _id: null, value: { max: 'value'}}},",
-			"    { project: { _id: 0, value: 1}}",
-			"]).",
-			"  then(function (res) {",
-			"    console.log(res);",
-			"});",
-			"",
-			""
-		],
-		"description": "Mongo Aggregate Example"
-	},
-	"Mongo Count Documents Example": {
-		"prefix": "mongo-countDocuments",
-		"body": [
-			"$Model.countDocuments({",
-			"    ${type}: ${filter}",
-			"}, (err, count) => {",
-			"    if (err) {",
-			"        console.log(`Error: ` + err)",
-			"    else",
-			"    console.log('There are %d documents', count);",
-			"    ",
-			"}});",
-			"",
-			""
-		],
-		"description": "Mongo Count Documents Example"
-	},
-	"Mongo MapReduce Example": {
-		"prefix": "mongo-mapReduce",
-		"body": [
-			"let ${o} = {};",
-			"${o}.map = function () { emit(this.name, value) };",
-			"${o}.reduce = function (k, vals) { return vals.length };",
-			"$Model.mapReduce(${o}, (err, doc) => {",
-			"   if(err){",
-			"       console.log(`Error: ` + err)",
-			"   } else{",
-			"       ",
-			"   }",
-			"});",
-			"",
-			""
-		],
-		"description": "Mongo MapReduce Example"
-	},
-	"Mongo Populate Example": {
-		"prefix": "mongo-populate",
-		"body": [
-			"let ${o} = { field: 'value'};",
-			"$Model.populate(${o}, { field: 'value'}, function (err, user) {",
-			"   ",
-			"});",
-			"",
-			""
-		],
-		"description": "Mongo Populate Example"
-	},
-	"Mongo BulkWrite Example": {
-		"prefix": "mongo-bulkWrite",
-		"body": [
-			"// Create an array of update operations",
-			"const updates = [",
-			"    {",
-			"        updateOne: {$1",
-			"            filter: { name: 'John Doe' },",
-			"            update: { $$set: { age: 26 } }",
-			"        }",
-			"    },",
-			"    {",
-			"        updateOne: {",
-			"            filter: { name: 'Jane Smith' },",
-			"            update: { $$set: { age: 31 } }",
-			"        }",
-			"    }",
-			"];",
-			"",
-			"// Execute the bulk write operation",
-			"${2:Model}.bulkWrite(updates, (error, result) => {",
-			"    if (error) {",
-			"        console.error(error);",
-			"    } else {",
-			"        console.log(result);",
-			"    }",
-			"});",
-			"",
-			""
-		],
-		"description": "Mongo BulkWrite Example"
-	},
-	// Create/Insert
-	"Mongo Create Example": {
-		"prefix": "mongo-create",
-		"body": [
-			"let $array = [{",
-			"    $field:$item",
-			"}, {",
-			"    $field:$item",
-			"}];",
-			"${1:Model}.create(",
-			"    $array",
-			").then((docs) => {",
-			"    ",
-			"});",
-			"",
-			""
-		],
-		"description": "Mongo Create Example"
-	},
-	"Mongo Create-Collection Example": {
-		"prefix": "mongo-createCollection",
-		"body": [
-			"${1:Model}.createCollection().then((docs) => {",
-			"    $2",
-			"});",
-			"",
-			""
-		],
-		"description": "Mongo Create-Collection Example"
-	},
-	"Mongo Insert-Many Example": {
-		"prefix": "mongo-insertMany",
-		"body": [
-			"let ${2:array} = [{",
-			"    ${3:field}: ${4:item}",
-			"}, {",
-			"    ${5:field}: ${6:item}",
-			"}];",
-			"${1:Model}.insertMany(",
-			"    ${2:array}",
-			").then((docs) => {",
-			"",
-			"});",
-			"",
-			""
-		],
-		"description": "Mongo Insert-Many Example"
-	},
-	// Find
-	"Mongo Find Example": {
-		"prefix": "mongo-find",
-		"body": [
-			"$Model.find({ ",
-			"    field: $filter",
-			"}, (err, docs) => {",
-			"   if(err){",
-			"       console.log(`Error: ` + err)",
-			"   } else{",
-			"     if(docs.length === 0){",
-			"         console.log(\"message\")",
-			"     } else{",
-			"       ",
-			"     }",
-			"   }",
-			"});",
-			"",
-			""
-		],
-		"description": "Mongo Find Example"
-	},
-	"Mongo Find-By-Id Example": {
-		"prefix": "mongo-findById",
-		"body": [
-			"$Model.findById({ ",
-			"    $id",
-			"}, (err, doc) => {",
-			"   if(err){",
-			"       console.log(`Error: ` + err)",
-			"   } else{",
-			"     if(!doc){",
-			"         console.log(\"message\")",
-			"     } else{",
-			"       ",
-			"     }",
-			"   }",
-			"});",
-			"",
-			""
-		],
-		"description": "Mongo Find By Id Example"
-	},
-	//Replace
-	"Mongo Replace-One Example": {
-		"prefix": "mongo-replaceOne",
-		"body": [
-			"${1:Model}.replaceOne({ ",
-			"    ${2:find-field}: ${3:filter}",
-			"}, {",
-			"    ${3:field}: ${4:value}",
-			"}",
-			" (err) => {",
-			"   if(err){",
-			"       console.log(`Error: ` + err)",
-			"   }",
-			"});",
-			"",
-			""
-		],
-		"description": "Mongo Replace One Example"
-	},
-	// Update
-	"Mongo Find-One-An-Update Example": {
-		"prefix": "mongo-findOneAndUpdate",
-		"body": [
-			"${1:Model}.findOneAndUpdate({",
-			"    ${2:find-field}: ${3:filter},",
-			"}, {",
-			"    ${4:update-field}: ${5:filter},",
-			"}, (err, doc) => {",
-			"    if (err) {",
-			"        console.log(`Error: ` + err)",
-			"    } else {",
-			"        ",
-			"    }",
-			"});",
-			"",
-			""
-		],
-		"description": "Mongo Find One An Update Example"
-	},
-	"Mongo Update One Example": {
-		"prefix": "mongo-updateOne",
-		"body": [
-			"${1:Model}.updateOne({ ",
-			"    ${2:find-field}: ${3:filter}",
-			"}, {",
-			"    ${5:update-field}: ${5:filter}",
-			"}",
-			"(err) => {",
-			"   if(err){",
-			"       console.log(`Error: ` + err)",
-			"   }",
-			"});",
-			"",
-			""
-		],
-		"description": "Mongo Update One Example"
-	},
-	"Mongo Update Many Example": {
-		"prefix": "mongo-updateMany",
-		"body": [
-			"${1:Model}.updateMany({ ",
-			"    ${2:find-field}: ${3:filter}",
-			"}, {",
-			"    ${3:update-field}: ${4:filter}",
-			"}",
-			"(err) => {",
-			"   if(err){",
-			"       console.log(`Error: ` + err)",
-			"   }",
-			"});",
-			"",
-			""
-		],
-		"description": "Mongo Update Many Example"
-	},
-	// Delete
-	"Mongo Find-One-And-Delete Example": {
-		"prefix": "mongo-findOneAndDelete",
-		"body": [
-			"${1:Model}.findOneAndDelete({ ",
-			"    ${2:field}: ${3:filter}",
-			"}, (err, doc) => {",
-			"   if(err){",
-			"       console.log(`Error: ` + err)",
-			"   } else{",
-			"     if(!doc){",
-			"         console.log(\"message\")",
-			"     } else{",
-			"       ",
-			"     }",
-			"   }",
-			"});",
-			"",
-			""
-		],
-		"description": "Mongo Find-One-And-Delete Example"
-	},
-	"Mongo Delete One Example": {
-		"prefix": "mongo-deleteOne",
-		"body": [
-			"${1:Model}.deleteOne({ ",
-			"    ${2:field}: '${3:filter}' ",
-			"}, (err) => {",
-			"   console.log(`Error: ` + err)",
-			"   ",
-			"});",
-			"",
-			""
-		],
-		"description": "Mongo Delete One Example"
-	},
-	"Mongo Delete Many Example": {
-		"prefix": "mongo-deleteMany",
-		"body": [
-			"${1:Model}.deleteMany({",
-			"    ${2:field}: '${3:filter}' ",
-			"    ${4:field}: '{ $$gte: ${5:0}}'",
-			"},",
-			"    (error, result) => {",
-			"        if (error) {",
-			"            console.error(error);",
-			"        } else {",
-			"            console.log(result.deletedCount + ' documents deleted');",
-			"        }",
-			"    })",
-			"",
-			""
-		],
-		"description": "Mongo Delete Many Example"
-	},
-	// Methods and Statics
-	"Mongo Methods Example": {
-		"prefix": "mongo-methods",
-		"body": [
-			"${1:schema}.methods.${2:func} = function ${3:func}(callback){",
-			"   return this.model(${4:model}).${5:find}({ ${6:type}: this.${7:type} }, callback);",
-			"}",
-			"",
-			""
-		],
-		"description": "Mongo Methods Example"
-	},
-	"Mongo statics Example": {
-		"prefix": "mongo-statics",
-		"body": [
-			"${1:schema}.statics.${2:func} = function ${3:func}(${4:param}, callback){",
-			"   return this.${5:where}(${6:param}, new RegExp(${7:param}, 'i')).${8:exec}(callback);",
-			"}",
-			"",
-			""
-		],
-		"description": "Mongo statics Example"
-	},
-	/* ======================== Redux RTK Query snippet ======================== */
-	"Redux RTK API Example": {
-		"prefix": "rtk-api",
-		"body": [
-			"import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react' /* IMPORT FRAME_WORK_NAME LIKE /react||*/;",
-			"",
-			"// Define an API slice",
-			"export const /*ROOT_API_SLICE_NAME ||*/ apiSlice = createApi({",
-			"",
-			"    reducerPath: 'api',",
-			"    baseQuery: fetchBaseQuery({ baseUrl: 'https://example.com/api' }),",
-			"    /*  prepareHeaders: (headers, { getState }) => {",
-			"         const token = getState().auth.token;",
-			" ",
-			"         // If we have a token set in state, let's assume that we should be passing it.",
-			"         if (token) {",
-			"           headers.set('authorization', `Bearer ${${token}}`);",
-			"         }",
-			" ",
-			"         return headers;",
-			"     }, */",
-			"    tagTypes: [\"Users\", \"User\"],",
-			"",
-			"    endpoints: (builder) => ({",
-			"        // get all users",
-			"        getUsers: builder.query({",
-			"            query: () => '/path',",
-			"            // keepUnusedDataFor: 600,",
-			"            providesTags: [\"Users\"]",
-			"        }),",
-			"        // get single user",
-			"        getUser: builder.query({",
-			"            query: (id) => `/path/${id}`,",
-			"            providesTags: (result, error, arg) => [{ type: \"User\", id: arg }],",
-			"        }),",
-			"        // add new user",
-			"        addNewUser: builder.mutation({",
-			"            query: (data) => ({",
-			"                url: '/path',",
-			"                method: 'POST',",
-			"                body: data,",
-			"            }),",
-			"            invalidatesTags: [\"Users\"],",
-			"        }),",
-			"        // edit user data ",
-			"        editUserData: builder.mutation({",
-			"            query: ({ id, data }) => ({",
-			"                url: `/path/${id}`,",
-			"                method: \"PATCH\",",
-			"                body: data,",
-			"            }),",
-			"            invalidatesTags: [\"Users\"],",
-			"        }),",
-			"        // delete user data",
-			"        deleteUser: builder.mutation({",
-			"            query: (id) => ({",
-			"                url: `/path/${id}`,",
-			"                method: \"DELETE\",",
-			"            }),",
-			"            invalidatesTags: [\"Users\"],",
-			"        }),",
-			"    }),",
-			"});",
-			"",
-			"export const { useGetUsersQuery, useGetUserQuery, useAddNewUserQuery, useEditUserDataQuery, useDeleteUserQuery } = /*ROOT_API_SLICE_NAME ||*/ apiSlice;"
-		],
-		"description": "Redux RTK API Example"
-	},
-	"Redux RTK Reducer Example": {
-		"prefix": "rtk-reducer",
-		"body": [
-			"reducers: {",
-			"        ${1:reducerName}: (state, action) => {",
-			"            state.${2:filedName} = action.payload;",
-			"        }",
-			"    },"
-		],
-		"description": "Redux RTK Qurey Reducer Example"
-	},
-	"Redux RTK Slice Example": {
-		"prefix": "rtk-slice",
-		"body": [
-			"import { createSlice } from \"@reduxjs/toolkit\";",
-			"",
-			"const initialState = {",
-			"    ${1:ObjKey}: ${2:value},",
-			"};",
-			"",
-			"const ${3:name}Slice = createSlice({",
-			"    name: \"${3:name}\",",
-			"    initialState,",
-			"    reducers: {",
-			"        ${4:reducerName}: (state, action) => {",
-			"            state.${5:ObjKey} = action.payload.${5:ObjKey};",
-			"        },",
-			"    },",
-			"});",
-			"",
-			"export const { ${4:reducerName}, } = ${3:name}Slice.actions;",
-			"export default ${3:name}Slice.reducer;"
-		],
-		"description": "Redux RTK Slice Example"
-	},
-	"Redux RTK Store Example": {
-		"prefix": "rtk-store",
-		"body": [
-			"import { configureStore } from '@reduxjs/toolkit'",
-			"import { /* ROOT_API_SLICE_NAME */ ${1:apiSlice} } from './${2:path}'",
-			"",
-			"export const store = configureStore({",
-			"  reducer: {",
-			"    [/* ROOT_API_SLICE_NAME */ ${1:apiSlice}.reducerPath]: ${1:apiSlice}.reducer,",
-			"  },",
-			"  devTools: process.env.NODE_ENV !== \"production\"",
-			"  middleware: (getDefaultMiddleware) =>",
-			"    getDefaultMiddleware().concat(/* ROOT_API_SLICE_NAME */ ${1:apiSlice}.middleware),",
-			"});",
-			"",
-			""
-		],
-		"description": "Redux RTK STORE Example"
-	},
-	"Redux RTK Use Query Example": {
-		"prefix": "rtk-useQuery",
-		"body": [
-			"const { data, error, isLoading } = use${1:END_POINT_NAME}Query();",
-			"",
-			""
-		],
-		"description": "Redux RTK Use Query Example"
-	},
-	"Redux RTK Use Mutation Example": {
-		"prefix": "rtk-useMutation",
-		"body": [
-			"const [${1:END_POINT_NAME}, /* result || */ { isLoading, isError, isSuccess }] = use${2:END_POINT_NAME}Mutation();",
-			"",
-			""
-		],
-		"description": "Redux RTK Use Mutation Example"
-	},
-	"Redux Use Selector Example": {
-		"prefix": "rtk-selector",
-		"body": [
-			"const { ${2:ChildObjName} } = useSelector(state => state.${1:MainObjName});"
-		],
-		"description": "Redux Use Selector Example"
-	},
-	"Redux Use Dispatch Example": {
-		"prefix": "rtk-dispatch",
-		"body": [
-			"const dispatch = useDispatch();"
-		],
-		"description": "Redux Use Selector Example"
-	},
-	"Redux RTK Inject End Points Example": {
-		"prefix": "rtk-inject-points",
-		"body": [
-			"import { apiSlice } from \"./path\";",
-			"/* import { userLoggedIn } from \"./authSlice\"; // reducer form custom made slice */",
-			"",
-			"export const ${1:END_POINT_API} = apiSlice.injectEndpoints({",
-			"    endpoints: (builder) => ({",
-			"        ${2:END_POINTS_NAME}: builder.mutation({",
-			"            query: (data) => ({",
-			"                url: \"/path\", /* you can use endpoint as your url path */",
-			"                method: \"POST\", /* PUT || POST || PATCH || GET || DELETE */",
-			"                body: data,",
-			"            }),",
-			"            async onQueryStarted(arg, { queryFulfilled, dispatch }) {",
-			"                try {",
-			"                    const result = await queryFulfilled;",
-			"                    dispatch(",
-			"                        /*",
-			"                        * As example",
-			"                        *",
-			"                        * Pass your data as parameter(if it is single just pass as it is and for for multiple pass it as an obj)",
-			"                        *   like bellow",
-			"                        *",
-			"                        * Single data:",
-			"                        *       userLoggedIn(objkey: result.data.objkey)",
-			"                        *",
-			"                        * Multiple data:",
-			"                        *       userLoggedIn({",
-			"                        *            objkey: result.data.objkey,",
-			"                        *            objkey: result.data.objkey,",
-			"                        *       })",
-			"                        */",
-			"                    );",
-			"                } catch (err) {",
-			"                    // do nothing",
-			"                }",
-			"            },",
-			"        }),",
-			"        ${3:END_POINTS_NAME}: builder.query({",
-			"            query: (param) => `/path/${param}`,",
-			"            providesTags: (result, error, arg) => [{ type: \"User\", id: arg }],",
-			"        })",
-			"    }),",
-			"});",
-			"",
-			"",
-			"export const { use${4:END_POINTS_NAME}Mutation, use${5:END_POINTS_NAME}Query } = ${1:END_POINT_API};",
-			""
-		],
-		"description": "Redux RTK Inject End Points Example"
-	}
+  // Place your snippets for javascript here. Each snippet is defined under a snippet name and has a prefix, body and
+  // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
+  // same ids are connected.
+  // Example:
+  "Print to console": {
+    "prefix": "log",
+    "body": ["console.${1|log, dir, table, warn|}('$2');", "", ""],
+    "description": "Log output to console"
+  },
+  "Arrow Function": {
+    "prefix": "af",
+    "body": [
+      "const ${1:function_name} = (${2:..args}) => {",
+      "	$3",
+      "};",
+      "",
+      ""
+    ],
+    "description": "Arrow Function"
+  },
+  "Normal Function": {
+    "prefix": "fun",
+    "body": ["function ${1:function_name}(${2}) {", "	${3}", "}", "", ""],
+    "description": "Normal Function"
+  },
+  "Arrow Async Function": {
+    "prefix": "asnc",
+    "body": [
+      "// async ${1:function_name} ",
+      "",
+      "const ${2:function_name} = async (${3:url}) => {",
+      "",
+      "    try {",
+      "",
+      "        const response = await fetch(${4:url});",
+      "        const data = await response.json();",
+      "",
+      "        return data;",
+      "",
+      "    } catch (error) {",
+      "        console.error(error);",
+      "    }",
+      "};",
+      "",
+      ""
+    ],
+    "description": "Arrow Async Function"
+  },
+  "Custom Comment": {
+    "prefix": "/",
+    "body": [
+      "/*",
+      "* Title: ${1:Title}",
+      "* Description: ${2:Description}",
+      "* Author: Joy Sarkar",
+      "* Date: $CURRENT_DATE-$CURRENT_MONTH_NAME_SHORT-$CURRENT_YEAR  ",
+      "*/",
+      "",
+      ""
+    ],
+    "description": "Custom Comment"
+  },
+  "Todo Comment": {
+    "prefix": "todo",
+    "body": ["// TODO: ${1:Task_Name}"],
+    "description": "Todo Comment"
+  },
+  "Controller": {
+    "prefix": "con-desc",
+    "body": [
+      "// @desc    $1",
+      "// @route   ${2:METHODS:GET||POST||PUT||DELETE} ${3:route}",
+      "// @access  ${4:Public||Private}"
+    ],
+    "description": "Controller comment"
+  },
+  /* ======================== React js snippet ======================== */
+  "React Functional Component": {
+    "prefix": "rsc",
+    "body": [
+      "export default function $TM_FILENAME_BASE() {",
+      "    return (",
+      "        <div>",
+      "           $1",
+      "        </div>",
+      "    )",
+      "}"
+    ],
+    "description": "React Functional Component"
+  },
+  "React Class Component": {
+    "prefix": "rcc",
+    "body": [
+      "import React, { Component } from 'react';",
+      "",
+      "class $TM_FILENAME_BASE extends Component {",
+      "    constructor(props) {",
+      "        super(props);",
+      "        this.state = {",
+      "            ${1:stateValue}: ${2:value}",
+      "        };",
+      "    }",
+      "",
+      "",
+      "    render() {",
+      "        return (",
+      "            <div>",
+      "                $3",
+      "            </div>",
+      "        );",
+      "    }",
+      "}",
+      "",
+      "export default $TM_FILENAME_BASE;"
+    ],
+    "description": "React Class Component"
+  },
+  /* ======================== Express js snippet ======================== */
+  // Application Snippets
+  "Express Server Example": {
+    "prefix": "ex-app",
+    "body": [
+      "// External imports",
+      "const express = require('express');	//@TODO: install this packages to use ",
+      "const cors = require('cors');	//@TODO: install this packages to use ",
+      "const cookieParser = require('cookieParser');	//@TODO: install this packages to use ",
+      "const { readdirSync } = require(\"fs\");",
+      "const path = require(\"path\");",
+      "",
+      "",
+      "//Security Middleware Import",
+      "const rateLimit = require('express-rate-limit');	//@TODO: install this packages to use ",
+      "const helmet = require('helmet');	//@TODO: install this packages to use ",
+      "const mongoSanitize = require('express-mongo-sanitize');	//@TODO: install this packages to use ",
+      "const hpp = require('hpp');	//@TODO: install this packages to use ",
+      "const morgan = require('morgan'); //@TODO: install this packages to use ",
+      "",
+      "",
+      "",
+      "// express app initialization",
+      "const app = express();",
+      "app.use(express.json());",
+      "app.use(express.urlencoded({ extended: false }));",
+      "app.use(cookieParser());",
+      "",
+      "",
+      "// Security middleware initialization",
+      "app.use(cors());",
+      "app.use(helmet());",
+      "app.use(mongoSanitize());",
+      "app.use(hpp());",
+      "app.use(morgan('dev'));",
+      "",
+      "",
+      "//Request Rate Limiting",
+      "const limiter = rateLimit({",
+      "    windowMs: 1 * 60 * 1000, // 1 minutes",
+      "    max: 10, // limit each IP to 10 requests per windowMs",
+      "    standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers",
+      "    legacyHeaders: false, // Disable the `X-RateLimit-*` headers",
+      "});",
+      "",
+      "app.use(limiter);",
+      "",
+      "",
+      "// Routing middleware initialization",
+      "readdirSync('./src/routes').map(r => app.use(`/api/v1`, require(`./src/routes/${${r}}`)));",
+      "",
+      "",
+      "",
+      "// module exports",
+      "module.exports = app;"
+    ],
+    "description": "Express Server Example"
+  },
+  "Express Index Example": {
+    "prefix": "ex-index",
+    "body": [
+      "// External imports",
+      "const dotenv = require('dotenv');",
+      "const mongoose = require('mongoose');",
+      "dotenv.config();",
+      "",
+      "",
+      "// Internal imports",
+      "const app = require('./app');",
+      "",
+      "app.listen(process.env.PORT, () => {",
+      "    console.log(`Server running on port ${process.env.PORT}`);",
+      "",
+      "    mongoose.connect(process.env.DB_CONNECTION_URI, {",
+      "        useNewUrlParser: true,",
+      "        useUnifiedTopology: true",
+      "    }).then(() => {",
+      "        console.log('Database connected successfully');",
+      "    }).catch((err) => {",
+      "        console.error('MongoDB connection error', err);",
+      "    });",
+      "});"
+    ],
+    "description": "Express Index Example"
+  },
+  "Express Mongo Connection Example": {
+    "prefix": "ex-mongo-connect",
+    "body": [
+      "// External imports",
+      "const mongoose = require('mongoose');",
+      "",
+      "",
+      "const connectDatabase = () => {",
+      "    mongoose.connect(process.env.DB_CONNECTION_URI, {",
+      "        useNewUrlParser: true,",
+      "        useUnifiedTopology: true",
+      "    }).then(() => {",
+      "        console.log('Database connected successfully');",
+      "    }).catch((err) => {",
+      "        console.error('MongoDB connection error', err);",
+      "    });",
+      "}",
+      "",
+      "",
+      "module.exports = connectDatabase;"
+    ],
+    "description": "Express Mongo Connection Example"
+  },
+  "Express App.all Example": {
+    "prefix": "ex-app-all",
+    "body": [
+      "app.all('${1:path}', (req, res, next) => {",
+      "	 $2",
+      "    next();",
+      "});",
+      "",
+      ""
+    ],
+    "description": "Express App.all Example"
+  },
+  "Express App.get Example": {
+    "prefix": "ex-app-get",
+    "body": ["app.get('${1:path}', (req, res) => {", "	 $2", "});", "", ""],
+    "description": "Express App.get Example"
+  },
+  "Express App.post Example": {
+    "prefix": "ex-app-post",
+    "body": ["app.post('${1:path}', (req, res) => {", "	 $2", "});", "", ""],
+    "description": "Express App.post Example"
+  },
+  "Express App.put Example": {
+    "prefix": "ex-app-put",
+    "body": ["app.put('${1:path}', (req, res) => {", "	 $2", "});", "", ""],
+    "description": "Express App.put Example"
+  },
+  "Express App.delete Example": {
+    "prefix": "ex-app-delete",
+    "body": ["app.delete('${1:path}', (req, res) => {", "	 $2", "});", "", ""],
+    "description": "Express App.delete Example"
+  },
+  "Express App.patch Example": {
+    "prefix": "ex-app-patch",
+    "body": ["app.patch('${1:path}', (req, res) => {", "	 $2", "});", "", ""],
+    "description": "Express App.patch Example"
+  },
+  "Express App.route Example": {
+    "prefix": "ex-app-route",
+    "body": [
+      "app.route('path')",
+      "    .get((req, res) => {",
+      "        res.send('Get user list');",
+      "    })",
+      "    .post((req, res) => {",
+      "        res.send('Add new user');",
+      "    })",
+      "    .put((req, res) => {",
+      "        res.send('Update user');",
+      "    })",
+      "    .delete((req, res) => {",
+      "        res.send('Delete user');",
+      "    });",
+      "",
+      ""
+    ],
+    "description": "Express App.route Example"
+  },
+  // Handlers Snippets
+  "Express 404 Example": {
+    "prefix": "ex-404",
+    "body": [
+      "app.use(function (req, res, next) {",
+      "    res.status(404).send('404 - Not Found!');",
+      "});",
+      ""
+    ],
+    "description": "Express 404 Example"
+  },
+  "Express 500 Example": {
+    "prefix": "ex-500",
+    "body": [
+      "app.use(function (err, req, res, next) {",
+      "    res.status(500).send('500 - Something was error!');",
+      "});",
+      ""
+    ],
+    "description": "Express 500 Example"
+  },
+  // Request Snippets
+  "Express Req.accepts Example": {
+    "prefix": "ex-req-accepts",
+    "body": ["req.accepts(${1:types});", "", ""],
+    "description": "Express Req.accepts Example"
+  },
+  "Express Req.field Example": {
+    "prefix": "ex-req-field",
+    "body": ["req.get('${1:field}');", "", ""],
+    "description": "Express Req.field Example"
+  },
+  "Express Req.cookie Example": {
+    "prefix": "ex-req-cookie",
+    "body": ["res.cookie('${1:name}', ${2:value});", "", ""],
+    "description": "Express Req.cookie Example"
+  },
+  "Express Req.redirect Example": {
+    "prefix": "ex-req-redirect",
+    "body": ["res.redirect('${1:path}');", "", ""],
+    "description": "Express Req.redirect Example"
+  },
+  // Router Snippets
+  "Express Router Example": {
+    "prefix": "ex-router",
+    "body": [
+      "const ${1:router} = require('express').Router();",
+      "",
+      "${1:router}.get('/$2', (req, res) => {",
+      "	$3",
+      "});",
+      "",
+      "module.exports = ${1:router};"
+    ],
+    "description": "Express Router Example"
+  },
+  "Express Router.get Example": {
+    "prefix": "ex-router-get",
+    "body": ["${1:router}.get('$2/', (req, res) => {", "	$3", "});", "", ""],
+    "description": "Express Router.get Example"
+  },
+  "Express Router.post Example": {
+    "prefix": "ex-router-post",
+    "body": ["${1:router}.post('$2/', (req, res) => {", " 	$3", "});", "", ""],
+    "description": "Express Router.post Example"
+  },
+  "Express Router.put Example": {
+    "prefix": "ex-router-put",
+    "body": ["${1:router}.put('$2/', (req, res) => {", " 	$3", "});", "", ""],
+    "description": "Express Router.put Example"
+  },
+  "Express Router.delete Example": {
+    "prefix": "ex-router-delete",
+    "body": ["${1:router}.delete('$2/', (req, res) => {", " 	$3", "});", "", ""],
+    "description": "Express Router.delete Example"
+  },
+  /* ======================== Mongo Snippets ======================== */
+  // Generic
+  "Mongo Connection Example": {
+    "prefix": "mongo-connect",
+    "body": [
+      "const mongoose = require('mongoose');",
+      "",
+      "mongoose.Promise = global.Promise;",
+      "",
+      "// Connect MongoDB at default port 27017.",
+      "mongoose.connect('mongodb://127.0.0.1:27017/${1:DB Name}', {",
+      "    useNewUrlParser: true,",
+      "    useCreateIndex: true,",
+      "}, (err) => {",
+      "    if (!err) {",
+      "        console.log('MongoDB Connection Succeeded.')",
+      "    } else {",
+      "        console.log('Error in DB connection: ' + err)",
+      "    }",
+      "});",
+      "",
+      ""
+    ],
+    "description": "Mongo Connection Example"
+  },
+  "Mongo Schema Model Example": {
+    "prefix": "mongo-model-schema",
+    "body": [
+      "const mongoose = require('mongoose'); // Erase if already required",
+      "",
+      "// Declare the Schema of the Mongo model",
+      "var $userSchema = new mongoose.Schema({",
+      "    name: {",
+      "        type: String,",
+      "        required: true,",
+      "        unique: true,",
+      "        index: true,",
+      "    },",
+      "    email: {",
+      "        type: String,",
+      "        required: true,",
+      "        unique: true,",
+      "    },",
+      "    mobile: {",
+      "        type: String,",
+      "        required: true,",
+      "        unique: true,",
+      "    },",
+      "    password: {",
+      "        type: String,",
+      "        required: true,",
+      "    },",
+      "});",
+      "",
+      "//Export the model",
+      "module.exports = mongoose.model('$User', $userSchema);",
+      "",
+      ""
+    ],
+    "description": "Mongo Schema Model Example"
+  },
+  "Mongo Aggregate Example": {
+    "prefix": "mongo-model-aggregate",
+    "body": [
+      "$Model.aggregate([",
+      "    { group: { _id: null, value: { max: 'value'}}},",
+      "    { project: { _id: 0, value: 1}}",
+      "]).",
+      "  then(function (res) {",
+      "    console.log(res);",
+      "});",
+      "",
+      ""
+    ],
+    "description": "Mongo Aggregate Example"
+  },
+  "Mongo Count Documents Example": {
+    "prefix": "mongo-countDocuments",
+    "body": [
+      "$Model.countDocuments({",
+      "    ${type}: ${filter}",
+      "}, (err, count) => {",
+      "    if (err) {",
+      "        console.log(`Error: ` + err)",
+      "    else",
+      "    console.log('There are %d documents', count);",
+      "    ",
+      "}});",
+      "",
+      ""
+    ],
+    "description": "Mongo Count Documents Example"
+  },
+  "Mongo MapReduce Example": {
+    "prefix": "mongo-mapReduce",
+    "body": [
+      "let ${o} = {};",
+      "${o}.map = function () { emit(this.name, value) };",
+      "${o}.reduce = function (k, vals) { return vals.length };",
+      "$Model.mapReduce(${o}, (err, doc) => {",
+      "   if(err){",
+      "       console.log(`Error: ` + err)",
+      "   } else{",
+      "       ",
+      "   }",
+      "});",
+      "",
+      ""
+    ],
+    "description": "Mongo MapReduce Example"
+  },
+  "Mongo Populate Example": {
+    "prefix": "mongo-populate",
+    "body": [
+      "let ${o} = { field: 'value'};",
+      "$Model.populate(${o}, { field: 'value'}, function (err, user) {",
+      "   ",
+      "});",
+      "",
+      ""
+    ],
+    "description": "Mongo Populate Example"
+  },
+  "Mongo BulkWrite Example": {
+    "prefix": "mongo-bulkWrite",
+    "body": [
+      "// Create an array of update operations",
+      "const updates = [",
+      "    {",
+      "        updateOne: {$1",
+      "            filter: { name: 'John Doe' },",
+      "            update: { $$set: { age: 26 } }",
+      "        }",
+      "    },",
+      "    {",
+      "        updateOne: {",
+      "            filter: { name: 'Jane Smith' },",
+      "            update: { $$set: { age: 31 } }",
+      "        }",
+      "    }",
+      "];",
+      "",
+      "// Execute the bulk write operation",
+      "${2:Model}.bulkWrite(updates, (error, result) => {",
+      "    if (error) {",
+      "        console.error(error);",
+      "    } else {",
+      "        console.log(result);",
+      "    }",
+      "});",
+      "",
+      ""
+    ],
+    "description": "Mongo BulkWrite Example"
+  },
+  // Create/Insert
+  "Mongo Create Example": {
+    "prefix": "mongo-create",
+    "body": [
+      "let $array = [{",
+      "    $field:$item",
+      "}, {",
+      "    $field:$item",
+      "}];",
+      "${1:Model}.create(",
+      "    $array",
+      ").then((docs) => {",
+      "    ",
+      "});",
+      "",
+      ""
+    ],
+    "description": "Mongo Create Example"
+  },
+  "Mongo Create-Collection Example": {
+    "prefix": "mongo-createCollection",
+    "body": [
+      "${1:Model}.createCollection().then((docs) => {",
+      "    $2",
+      "});",
+      "",
+      ""
+    ],
+    "description": "Mongo Create-Collection Example"
+  },
+  "Mongo Insert-Many Example": {
+    "prefix": "mongo-insertMany",
+    "body": [
+      "let ${2:array} = [{",
+      "    ${3:field}: ${4:item}",
+      "}, {",
+      "    ${5:field}: ${6:item}",
+      "}];",
+      "${1:Model}.insertMany(",
+      "    ${2:array}",
+      ").then((docs) => {",
+      "",
+      "});",
+      "",
+      ""
+    ],
+    "description": "Mongo Insert-Many Example"
+  },
+  // Find
+  "Mongo Find Example": {
+    "prefix": "mongo-find",
+    "body": [
+      "$Model.find({ ",
+      "    field: $filter",
+      "}, (err, docs) => {",
+      "   if(err){",
+      "       console.log(`Error: ` + err)",
+      "   } else{",
+      "     if(docs.length === 0){",
+      "         console.log(\"message\")",
+      "     } else{",
+      "       ",
+      "     }",
+      "   }",
+      "});",
+      "",
+      ""
+    ],
+    "description": "Mongo Find Example"
+  },
+  "Mongo Find-By-Id Example": {
+    "prefix": "mongo-findById",
+    "body": [
+      "$Model.findById({ ",
+      "    $id",
+      "}, (err, doc) => {",
+      "   if(err){",
+      "       console.log(`Error: ` + err)",
+      "   } else{",
+      "     if(!doc){",
+      "         console.log(\"message\")",
+      "     } else{",
+      "       ",
+      "     }",
+      "   }",
+      "});",
+      "",
+      ""
+    ],
+    "description": "Mongo Find By Id Example"
+  },
+  //Replace
+  "Mongo Replace-One Example": {
+    "prefix": "mongo-replaceOne",
+    "body": [
+      "${1:Model}.replaceOne({ ",
+      "    ${2:find-field}: ${3:filter}",
+      "}, {",
+      "    ${3:field}: ${4:value}",
+      "}",
+      " (err) => {",
+      "   if(err){",
+      "       console.log(`Error: ` + err)",
+      "   }",
+      "});",
+      "",
+      ""
+    ],
+    "description": "Mongo Replace One Example"
+  },
+  // Update
+  "Mongo Find-One-An-Update Example": {
+    "prefix": "mongo-findOneAndUpdate",
+    "body": [
+      "${1:Model}.findOneAndUpdate({",
+      "    ${2:find-field}: ${3:filter},",
+      "}, {",
+      "    ${4:update-field}: ${5:filter},",
+      "}, (err, doc) => {",
+      "    if (err) {",
+      "        console.log(`Error: ` + err)",
+      "    } else {",
+      "        ",
+      "    }",
+      "});",
+      "",
+      ""
+    ],
+    "description": "Mongo Find One An Update Example"
+  },
+  "Mongo Update One Example": {
+    "prefix": "mongo-updateOne",
+    "body": [
+      "${1:Model}.updateOne({ ",
+      "    ${2:find-field}: ${3:filter}",
+      "}, {",
+      "    ${5:update-field}: ${5:filter}",
+      "}",
+      "(err) => {",
+      "   if(err){",
+      "       console.log(`Error: ` + err)",
+      "   }",
+      "});",
+      "",
+      ""
+    ],
+    "description": "Mongo Update One Example"
+  },
+  "Mongo Update Many Example": {
+    "prefix": "mongo-updateMany",
+    "body": [
+      "${1:Model}.updateMany({ ",
+      "    ${2:find-field}: ${3:filter}",
+      "}, {",
+      "    ${3:update-field}: ${4:filter}",
+      "}",
+      "(err) => {",
+      "   if(err){",
+      "       console.log(`Error: ` + err)",
+      "   }",
+      "});",
+      "",
+      ""
+    ],
+    "description": "Mongo Update Many Example"
+  },
+  // Delete
+  "Mongo Find-One-And-Delete Example": {
+    "prefix": "mongo-findOneAndDelete",
+    "body": [
+      "${1:Model}.findOneAndDelete({ ",
+      "    ${2:field}: ${3:filter}",
+      "}, (err, doc) => {",
+      "   if(err){",
+      "       console.log(`Error: ` + err)",
+      "   } else{",
+      "     if(!doc){",
+      "         console.log(\"message\")",
+      "     } else{",
+      "       ",
+      "     }",
+      "   }",
+      "});",
+      "",
+      ""
+    ],
+    "description": "Mongo Find-One-And-Delete Example"
+  },
+  "Mongo Delete One Example": {
+    "prefix": "mongo-deleteOne",
+    "body": [
+      "${1:Model}.deleteOne({ ",
+      "    ${2:field}: '${3:filter}' ",
+      "}, (err) => {",
+      "   console.log(`Error: ` + err)",
+      "   ",
+      "});",
+      "",
+      ""
+    ],
+    "description": "Mongo Delete One Example"
+  },
+  "Mongo Delete Many Example": {
+    "prefix": "mongo-deleteMany",
+    "body": [
+      "${1:Model}.deleteMany({",
+      "    ${2:field}: '${3:filter}' ",
+      "    ${4:field}: '{ $$gte: ${5:0}}'",
+      "},",
+      "    (error, result) => {",
+      "        if (error) {",
+      "            console.error(error);",
+      "        } else {",
+      "            console.log(result.deletedCount + ' documents deleted');",
+      "        }",
+      "    })",
+      "",
+      ""
+    ],
+    "description": "Mongo Delete Many Example"
+  },
+  // Methods and Statics
+  "Mongo Methods Example": {
+    "prefix": "mongo-methods",
+    "body": [
+      "${1:schema}.methods.${2:func} = function ${3:func}(callback){",
+      "   return this.model(${4:model}).${5:find}({ ${6:type}: this.${7:type} }, callback);",
+      "}",
+      "",
+      ""
+    ],
+    "description": "Mongo Methods Example"
+  },
+  "Mongo statics Example": {
+    "prefix": "mongo-statics",
+    "body": [
+      "${1:schema}.statics.${2:func} = function ${3:func}(${4:param}, callback){",
+      "   return this.${5:where}(${6:param}, new RegExp(${7:param}, 'i')).${8:exec}(callback);",
+      "}",
+      "",
+      ""
+    ],
+    "description": "Mongo statics Example"
+  },
+  /* ======================== Redux RTK Query snippet ======================== */
+  "Redux RTK API Example": {
+    "prefix": "rtk-api",
+    "body": [
+      "import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react' /* IMPORT FRAME_WORK_NAME LIKE /react||*/;",
+      "",
+      "// Define an API slice",
+      "export const /*ROOT_API_SLICE_NAME ||*/ apiSlice = createApi({",
+      "",
+      "    reducerPath: 'api',",
+      "    baseQuery: fetchBaseQuery({ baseUrl: 'https://example.com/api' }),",
+      "    /*  prepareHeaders: (headers, { getState }) => {",
+      "         const token = getState().auth.token;",
+      " ",
+      "         // If we have a token set in state, let's assume that we should be passing it.",
+      "         if (token) {",
+      "           headers.set('authorization', `Bearer ${${token}}`);",
+      "         }",
+      " ",
+      "         return headers;",
+      "     }, */",
+      "    tagTypes: [\"Users\", \"User\"],",
+      "",
+      "    endpoints: (builder) => ({",
+      "        // get all users",
+      "        getUsers: builder.query({",
+      "            query: () => '/path',",
+      "            // keepUnusedDataFor: 600,",
+      "            providesTags: [\"Users\"]",
+      "        }),",
+      "        // get single user",
+      "        getUser: builder.query({",
+      "            query: (id) => `/path/${id}`,",
+      "            providesTags: (result, error, arg) => [{ type: \"User\", id: arg }],",
+      "        }),",
+      "        // add new user",
+      "        addNewUser: builder.mutation({",
+      "            query: (data) => ({",
+      "                url: '/path',",
+      "                method: 'POST',",
+      "                body: data,",
+      "            }),",
+      "            invalidatesTags: [\"Users\"],",
+      "        }),",
+      "        // edit user data ",
+      "        editUserData: builder.mutation({",
+      "            query: ({ id, data }) => ({",
+      "                url: `/path/${id}`,",
+      "                method: \"PATCH\",",
+      "                body: data,",
+      "            }),",
+      "            invalidatesTags: [\"Users\"],",
+      "        }),",
+      "        // delete user data",
+      "        deleteUser: builder.mutation({",
+      "            query: (id) => ({",
+      "                url: `/path/${id}`,",
+      "                method: \"DELETE\",",
+      "            }),",
+      "            invalidatesTags: [\"Users\"],",
+      "        }),",
+      "    }),",
+      "});",
+      "",
+      "export const { useGetUsersQuery, useGetUserQuery, useAddNewUserQuery, useEditUserDataQuery, useDeleteUserQuery } = /*ROOT_API_SLICE_NAME ||*/ apiSlice;"
+    ],
+    "description": "Redux RTK API Example"
+  },
+  "Redux RTK Reducer Example": {
+    "prefix": "rtk-reducer",
+    "body": [
+      "reducers: {",
+      "        ${1:reducerName}: (state, action) => {",
+      "            state.${2:filedName} = action.payload;",
+      "        }",
+      "    },"
+    ],
+    "description": "Redux RTK Query Reducer Example"
+  },
+  "Redux RTK Slice Example": {
+    "prefix": "rtk-slice",
+    "body": [
+      "import { createSlice } from \"@reduxjs/toolkit\";",
+      "",
+      "const initialState = {",
+      "    ${1:ObjKey}: ${2:value},",
+      "};",
+      "",
+      "const ${3:name}Slice = createSlice({",
+      "    name: \"${3:name}\",",
+      "    initialState,",
+      "    reducers: {",
+      "        ${4:reducerName}: (state, action) => {",
+      "            state.${5:ObjKey} = action.payload.${5:ObjKey};",
+      "        },",
+      "    },",
+      "});",
+      "",
+      "export const { ${4:reducerName}, } = ${3:name}Slice.actions;",
+      "export default ${3:name}Slice.reducer;"
+    ],
+    "description": "Redux RTK Slice Example"
+  },
+  "Redux RTK Store Example": {
+    "prefix": "rtk-store",
+    "body": [
+      "import { configureStore } from '@reduxjs/toolkit'",
+      "import { /* ROOT_API_SLICE_NAME */ ${1:apiSlice} } from './${2:path}'",
+      "",
+      "export const store = configureStore({",
+      "  reducer: {",
+      "    [/* ROOT_API_SLICE_NAME */ ${1:apiSlice}.reducerPath]: ${1:apiSlice}.reducer,",
+      "  },",
+      "  devTools: process.env.NODE_ENV !== \"production\"",
+      "  middleware: (getDefaultMiddleware) =>",
+      "    getDefaultMiddleware().concat(/* ROOT_API_SLICE_NAME */ ${1:apiSlice}.middleware),",
+      "});",
+      "",
+      ""
+    ],
+    "description": "Redux RTK STORE Example"
+  },
+  "Redux RTK Use Query Example": {
+    "prefix": "rtk-useQuery",
+    "body": [
+      "const { data, error, isLoading } = use${1:END_POINT_NAME}Query();",
+      "",
+      ""
+    ],
+    "description": "Redux RTK Use Query Example"
+  },
+  "Redux RTK Use Mutation Example": {
+    "prefix": "rtk-useMutation",
+    "body": [
+      "const [${1:END_POINT_NAME}, /* result || */ { isLoading, isError, isSuccess }] = use${2:END_POINT_NAME}Mutation();",
+      "",
+      ""
+    ],
+    "description": "Redux RTK Use Mutation Example"
+  },
+  "Redux Use Selector Example": {
+    "prefix": "rtk-selector",
+    "body": [
+      "const { ${2:ChildObjName} } = useSelector(state => state.${1:MainObjName});"
+    ],
+    "description": "Redux Use Selector Example"
+  },
+  "Redux Use Dispatch Example": {
+    "prefix": "rtk-dispatch",
+    "body": ["const dispatch = useDispatch();"],
+    "description": "Redux Use Dispatch Example"
+  },
+  "Redux RTK Inject End Points Example": {
+    "prefix": "rtk-inject-points",
+    "body": [
+      "import { apiSlice } from \"./path\";",
+      "/* import { userLoggedIn } from \"./authSlice\"; // reducer form custom made slice */",
+      "",
+      "export const ${1:END_POINT_API} = apiSlice.injectEndpoints({",
+      "    endpoints: (builder) => ({",
+      "        ${2:END_POINTS_NAME}: builder.mutation({",
+      "            query: (data) => ({",
+      "                url: \"/path\", /* you can use endpoint as your url path */",
+      "                method: \"POST\", /* PUT || POST || PATCH || GET || DELETE */",
+      "                body: data,",
+      "            }),",
+      "            async onQueryStarted(arg, { queryFulfilled, dispatch }) {",
+      "                try {",
+      "                    const result = await queryFulfilled;",
+      "                    dispatch(",
+      "                        /*",
+      "                        * As example",
+      "                        *",
+      "                        * Pass your data as parameter(if it is single just pass as it is and for for multiple pass it as an obj)",
+      "                        *   like bellow",
+      "                        *",
+      "                        * Single data:",
+      "                        *       userLoggedIn(objkey: result.data.objkey)",
+      "                        *",
+      "                        * Multiple data:",
+      "                        *       userLoggedIn({",
+      "                        *            objkey: result.data.objkey,",
+      "                        *            objkey: result.data.objkey,",
+      "                        *       })",
+      "                        */",
+      "                    );",
+      "                } catch (err) {",
+      "                    // do nothing",
+      "                }",
+      "            },",
+      "        }),",
+      "        ${3:END_POINTS_NAME}: builder.query({",
+      "            query: (param) => `/path/${param}`,",
+      "            providesTags: (result, error, arg) => [{ type: \"User\", id: arg }],",
+      "        })",
+      "    }),",
+      "});",
+      "",
+      "",
+      "export const { use${4:END_POINTS_NAME}Mutation, use${5:END_POINTS_NAME}Query } = ${1:END_POINT_API};",
+      ""
+    ],
+    "description": "Redux RTK Inject End Points Example"
+  }
 }

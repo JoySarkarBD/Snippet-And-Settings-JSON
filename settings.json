@@ -21,35 +21,41 @@
   // config related to code formatting
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
-  "javascript.validate.enable": false, //disable all built-in syntax checking
+  "[javascriptreact]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[html]": {
-    "editor.defaultFormatter": "vscode.html-language-features"
-  },
-  "[scss]": {
-    "editor.defaultFormatter": "vscode.css-language-features"
-  },
-  "[javascript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features",
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[css]": {
-    "editor.defaultFormatter": "vscode.css-language-features"
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[javascriptreact]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+  "[javascript]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[jsonc]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  // Define Prettier-specific settings
+  "prettier.bracketSameLine": true,
+  "prettier.jsxSingleQuote": true,
+  "prettier.singleQuote": false,
+  "javascript.validate.enable": false, //disable all built-in syntax checking
   //disable all built-in syntax checking
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,
     "source.fixAll.tslint": true,
-    "source.organizeImports": true,
+    "source.organizeImports": true
   },
-  "prettier.disableLanguages": [
-    "javascript",
-    "javascriptreact"
-  ],
   // bracket pair colorizer
   "editor.bracketPairColorization.enabled": true,
   // emmet
@@ -60,7 +66,7 @@
   //terminal
   "terminal.integrated.fontSize": 15,
   "terminal.integrated.fontWeight": "normal",
-  "terminal.integrated.fontFamily": "Fira Code, Operator Mono,\"Cascadia Code\"",
+  "terminal.integrated.fontFamily": "FiraCode NFM Retina, Fira Code, Operator Mono,\"Cascadia Code\"",
   "terminal.integrated.cursorStyle": "line",
   // terminal customization
   "workbench.colorCustomizations": {
@@ -85,7 +91,7 @@
     "terminal.ansiRed": "#FB543F",
     "terminal.ansiWhite": "#A89984",
     "terminal.ansiYellow": "#FAC03B",
-    // Overrides Theme Default Colors for InlayHints feature 
+    // Overrides Theme Default Colors for InlayHints feature
     "editorInlayHint.background": "#00001CCC",
     "editorInlayHint.foreground": "#99FFBBCC",
     // Overrides Theme Parameter hints fg for InlayHints feature
@@ -119,29 +125,38 @@
   "terminal.integrated.defaultProfile.windows": "PowerShell",
   "git.suggestSmartCommit": false,
   "git.openRepositoryInParentFolders": "never",
-  "prettier.jsxSingleQuote": true,
-  "prettier.requireConfig": true,
   "window.commandCenter": true,
   "files.associations": {
     "*.jsx": "javascriptreact"
   },
   "liveServer.settings.donotVerifyTags": true,
   "liveServer.settings.donotShowInfoMsg": true,
-  // "javascript.inlayHints.parameterNames.enabled": "all",
-  // "javascript.inlayHints.parameterTypes.enabled": true,
-  // "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
-  // "typescript.inlayHints.enumMemberValues.enabled": true,
-  // "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
-  // "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
-  // "javascript.inlayHints.variableTypes.enabled": true,
-  // "javascript.inlayHints.enumMemberValues.enabled": true,
-  // "typescript.inlayHints.parameterNames.enabled": "all",
-  // "typescript.inlayHints.parameterTypes.enabled": true,
-  // "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
-  // "typescript.inlayHints.variableTypes.enabled": true,
-  // "editor.inlayHints.fontFamily": "\"Cascadia Code\", Fira Code, Operator Mono",
-  // "editor.inlayHints.padding": true,
-  "workbench.iconTheme": "material-icon-theme"
+  "editor.inlayHints.fontFamily": "\"Cascadia Code\", Fira Code, Operator Mono",
+  "editor.inlayHints.padding": true,
+  "workbench.iconTheme": "vscode-icons",
+  "terminal.integrated.profiles.windows": {
+    "PowerShell": {
+      "source": "PowerShell",
+      "icon": "terminal-powershell"
+    },
+    "Command Prompt": {
+      "path": [
+        "${env:windir}\\Sysnative\\cmd.exe",
+        "${env:windir}\\System32\\cmd.exe"
+      ],
+      "args": [],
+      "icon": "terminal-cmd"
+    },
+    "Git Bash": {
+      "source": "Git Bash"
+    }
+  },
+  "cSpell.userWords": ["Bangla", "Sarkar"],
+  "javascript.inlayHints.parameterNames.enabled": "all",
+  "tabnine.experimentalAutoImports": true,
+  "conventionalCommits.autoCommit": false,
+  "workbench.sideBar.location": "right",
+  "editor.formatOnPaste": true
 }
 /* 
 
@@ -150,29 +165,39 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
-  "[javascript]": {
-    "editor.formatOnSave": false,
-    "editor.defaultFormatter": null
-  },
   "[javascriptreact]": {
-    "editor.formatOnSave": false,
-    "editor.defaultFormatter": null
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "javascript.validate.enable": false, //disable all built-in syntax checking
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.fixAll.tslint": true,
-    "source.organizeImports": true
+  "[html]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  // emmet
-  "emmet.triggerExpansionOnTab": true,
-  "emmet.includeLanguages": {
-    "javascript": "javascriptreact"
-  }
+  "[css]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // Define Prettier-specific settings
+  "prettier.bracketSameLine": true,
+  "prettier.jsxSingleQuote": true,
+  "prettier.singleQuote": false,
 } 
 
 
 */
+
 /* 
 
 // For React Project with eslint and prettier .eslintrc (Use those codes for workspace) 
