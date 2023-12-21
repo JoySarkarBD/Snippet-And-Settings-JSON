@@ -76,47 +76,6 @@
     ],
     "description": "Controller comment"
   },
-  /* ======================== React js snippet ======================== */
-  "React Functional Component": {
-    "prefix": "rsc",
-    "body": [
-      "export default function $TM_FILENAME_BASE() {",
-      "    return (",
-      "        <div>",
-      "           $1",
-      "        </div>",
-      "    )",
-      "}"
-    ],
-    "description": "React Functional Component"
-  },
-  "React Class Component": {
-    "prefix": "rcc",
-    "body": [
-      "import React, { Component } from 'react';",
-      "",
-      "class $TM_FILENAME_BASE extends Component {",
-      "    constructor(props) {",
-      "        super(props);",
-      "        this.state = {",
-      "            ${1:stateValue}: ${2:value}",
-      "        };",
-      "    }",
-      "",
-      "",
-      "    render() {",
-      "        return (",
-      "            <div>",
-      "                $3",
-      "            </div>",
-      "        );",
-      "    }",
-      "}",
-      "",
-      "export default $TM_FILENAME_BASE;"
-    ],
-    "description": "React Class Component"
-  },
   /* ======================== Express js snippet ======================== */
   // Application Snippets
   "Express Server Example": {
@@ -125,7 +84,7 @@
       "// External imports",
       "const express = require('express');	//@TODO: install this packages to use ",
       "const cors = require('cors');	//@TODO: install this packages to use ",
-      "const cookieParser = require('cookieParser');	//@TODO: install this packages to use ",
+      "const cookieParser = require('cookie-parser');	//@TODO: install this packages to use ",
       "const { readdirSync } = require(\"fs\");",
       "const path = require(\"path\");",
       "",
