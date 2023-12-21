@@ -39,7 +39,7 @@
   },
   "[json]": {
     "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "vscode.json-language-features"
   },
   "[jsonc]": {
     "editor.formatOnSave": true,
@@ -52,9 +52,9 @@
   "javascript.validate.enable": false, //disable all built-in syntax checking
   //disable all built-in syntax checking
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.fixAll.tslint": true,
-    "source.organizeImports": true
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.tslint": "explicit",
+    "source.organizeImports": "explicit"
   },
   // bracket pair colorizer
   "editor.bracketPairColorization.enabled": true,
@@ -155,7 +155,6 @@
   "javascript.inlayHints.parameterNames.enabled": "all",
   "tabnine.experimentalAutoImports": true,
   "conventionalCommits.autoCommit": false,
-  "workbench.sideBar.location": "right",
   "editor.formatOnPaste": true
 }
 /* 
