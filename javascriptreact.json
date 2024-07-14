@@ -30,12 +30,12 @@
     "description": "Arrow Function"
   },
   "Normal Function": {
-    "prefix": "fun",
+    "prefix": "fn",
     "body": ["function ${1:function_name}(${2}) {", "	${3}", "}", "", ""],
     "description": "Normal Function"
   },
   "Arrow Async Function": {
-    "prefix": "asnc",
+    "prefix": "asyncfn",
     "body": [
       "// async ${1:function_name} ",
       "",
