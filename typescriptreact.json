@@ -1,0 +1,110 @@
+{
+  // Place your snippets for typescriptreact here. Each snippet is defined under a snippet name and has a prefix, body and
+  // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
+  // same ids are connected.
+  // Example:
+  // "Print to console": {
+  // 	"prefix": "log",
+  // 	"body": [
+  // 		"console.log('$1');",
+  // 		"$2"
+  // 	],
+  // 	"description": "Log output to console"
+  // }
+  "Print to console": {
+    "prefix": "log",
+    "body": ["console.${1|log, dir, table, warn|}('$2');", "", ""],
+    "description": "Log output to console"
+  },
+  "Arrow Function": {
+    "prefix": "af",
+    "body": [
+      "const ${1:function_name} = (${2:..args}) => {",
+      "	$3",
+      "};",
+      "",
+      ""
+    ],
+    "description": "Arrow Function"
+  },
+  "Normal Function": {
+    "prefix": "fn",
+    "body": ["function ${1:function_name}(${2}) {", "	${3}", "}", "", ""],
+    "description": "Normal Function"
+  },
+  "Arrow Async Function": {
+    "prefix": "asyncfn",
+    "body": [
+      "// async ${1:function_name} ",
+      "",
+      "const ${2:function_name} = async (${3:url}) => {",
+      "",
+      "    try {",
+      "",
+      "        const response = await fetch(${4:url});",
+      "        const data = await response.json();",
+      "",
+      "        return data;",
+      "",
+      "    } catch (error) {",
+      "        console.error(error);",
+      "    }",
+      "};",
+      "",
+      ""
+    ],
+    "description": "Arrow Async Function"
+  },
+  "Custom Comment": {
+    "prefix": "/",
+    "body": [
+      "/*",
+      "* Title: ${1:Title}",
+      "* Description: ${2:Description}",
+      "* Author: Joy Sarkar",
+      "* Date: $CURRENT_DATE-$CURRENT_MONTH_NAME_SHORT-$CURRENT_YEAR  ",
+      "*/",
+      "",
+      ""
+    ],
+    "description": "Custom Comment"
+  },
+  "Todo Comment": {
+    "prefix": "todo",
+    "body": ["// TODO: ${1:Task_Name}"],
+    "description": "Todo Comment"
+  },
+  /* ======================== Redux RTK Query snippet ======================== */
+  "Redux RTK Use Query Example": {
+    "prefix": "rtk-useQuery",
+    "body": [
+      "const { data, error, isLoading } = use${1:END_POINT_NAME}Query();",
+      "",
+      ""
+    ],
+    "description": "Redux RTK Use Query Example"
+  },
+  "Redux RTK Use Mutation Example": {
+    "prefix": "rtk-useMutation",
+    "body": [
+      "const [${1:END_POINT_NAME}, /* result || */ { isLoading, isError, isSuccess }] = use${2:END_POINT_NAME}Mutation();",
+      "",
+      ""
+    ],
+    "description": "Redux RTK Use Mutation Example"
+  },
+  "Redux Use Selector Example": {
+    "prefix": "rtk-selector",
+    "body": [
+      "const { ${2:ChildObjName} } = useSelector(state => state.${1:MainObjName});"
+    ],
+    "description": "Redux Use Selector Example"
+  },
+  "Redux Use Dispatch Example": {
+    "prefix": "rtk-dispatch",
+    "body": ["const dispatch = useDispatch();"],
+    "description": "Redux Use Dispatch Example"
+  }
+}
+
