@@ -1,0 +1,119 @@
+{
+    // Snippets for C programming in Visual Studio Code
+    // Each snippet is defined under a snippet name and has a prefix, body, and description.
+    // The prefix is what is used to trigger the snippet, and the body will be expanded and inserted.
+    // Possible variables are: $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders.
+    // Placeholders with the same ids are connected.
+      "Custom Comment": {
+    		"prefix": "/",
+    		"body": [
+      			"/*",
+      			"* Title: ${1:Title}",
+      			"* Description: ${2:Description}",
+      			"* Author: Joy Sarkar",
+      			"* Date: $CURRENT_DATE-$CURRENT_MONTH_NAME_SHORT-$CURRENT_YEAR  ",
+      			"*/",
+      			"",
+      			""
+    		],
+    		"description": "Custom Comment"
+  	},
+  		"Todo Comment": {
+    		"prefix": "todo",
+    		"body": ["// TODO: ${1:Task_Name}"],
+    		"description": "Todo Comment"
+  	},
+    "Basic C Program": {
+        "prefix": "cmain",
+        "body": [
+            "#include <stdio.h> // Header file for input and output functions",
+            "",
+            "int main() ",
+            "{",
+            "    $1",
+            "    return 0; // Indicate that the program ended successfully",
+            "}"
+        ],
+        "description": "A basic C program template"
+    },
+    "Printf Statement": {
+        "prefix": "cprintf",
+        "body": [
+            "printf(\"${1:format_string}\\n\", ${2:variables});",
+            "$0"
+        ],
+        "description": "Printf statement"
+    },
+
+    // Scanf Statement
+    "Scanf Statement": {
+        "prefix": "cscanf",
+        "body": [
+            "scanf(\"${1:format_string}\", &${2:variable});",
+            "$0"
+        ],
+        "description": "Scanf statement"
+    },
+    "For Loop": {
+        "prefix": "cfor",
+        "body": [
+            "for (int ${1:i} = 0; ${1:i} < ${2:count}; ${1:i}++)",
+            "{",
+            "    $3",
+            "}",
+            "$0"
+        ],
+        "description": "For loop"
+    },
+    "While Loop": {
+        "prefix": "cwhile",
+        "body": [
+            "while (${1:condition})",
+            "{",
+            "    $2",
+            "}",
+            "$0"
+        ],
+        "description": "While loop"
+    },
+    "If Statement": {
+        "prefix": "cif",
+        "body": [
+            "if (${1:condition})",
+            "{",
+            "    // code to execute if condition is true",
+						"    $2",
+            "}",
+            "$0"
+        ],
+        "description": "If statement"
+    },
+    "If-Else Statement": {
+        "prefix": "cifelse",
+        "body": [
+            "if (${1:condition})",
+            "{",
+            "    // code to execute if condition is true",
+            "    $2",
+            "}",
+            "else",
+            "{",
+            "    // code to execute if condition is false",
+            "    $3",
+            "}",
+            "$0"
+        ],
+        "description": "If-Else statement"
+    },
+    "Function Definition": {
+        "prefix": "cfn",
+        "body": [
+            "${1:void} ${2:function_name}(${3:parameters})",
+            "{",
+            "    $4",
+            "}",
+            "$0"
+        ],
+        "description": "Function definition"
+    }
+}
